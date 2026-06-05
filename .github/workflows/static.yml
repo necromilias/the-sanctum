@@ -37,13 +37,17 @@ jobs:
       - name: Build
         run: NODE_OPTIONS="--max-old-space-size=8192" npm run build:pages
 
+      # Copy CNAME into the built output
+      - name: Copy CNAME to dist
+        run: cp CNAME ./dist/CNAME || echo "micksfoundry.org" > ./dist/CNAME
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'          # ← Important: upload the built folder
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
