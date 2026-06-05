@@ -1,0 +1,9 @@
+{
+  "name": "FoundryVTT",
+  "description": "Virtual tabletop platform for playing tabletop RPGs online.",
+  "url": "https://micksfoundry.org/",
+  "icon_name": "foundry",
+  "category": "Gaming",
+  "display_order": 1,
+  "is_active": true
+}

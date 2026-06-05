@@ -1,0 +1,9 @@
+{
+  "name": "Pi-hole",
+  "description": "Network-wide ad blocker and DNS sinkhole.",
+  "url": "https://micksfoundry.org",
+  "icon_name": "Shield",
+  "category": "Network",
+  "display_order": 30,
+  "is_active": true
+}

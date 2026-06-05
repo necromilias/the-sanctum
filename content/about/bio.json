@@ -1,0 +1,19 @@
+{
+  "section_type": "bio",
+  "title": "Bio",
+  "content": {
+    "type": "root",
+    "children": [
+      {
+        "type": "p",
+        "children": [
+          {
+            "type": "text",
+            "text": "I'm a tradesman-turned-tech enthusiast with a background in mining, manufacturing, and mechanical systems. These days you'll usually find me running Linux, experimenting with self-hosted infrastructure, building projects to learn new skills, or diving into software development. I enjoy understanding how things work, whether that's heavy machinery underground, a Docker stack in my homelab, or the code behind a new application. This site is where I document what I'm learning, share projects I'm working on, and explore the intersection between practical engineering and modern technology."
+          }
+        ]
+      }
+    ]
+  },
+  "display_order": 10
+}

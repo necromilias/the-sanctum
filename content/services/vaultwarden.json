@@ -1,0 +1,9 @@
+{
+  "name": "Vaultwarden",
+  "description": "Self-hosted password manager compatible with Bitwarden clients.",
+  "url": "https://micksfoundry.org/",
+  "icon_name": "KeyRound",
+  "category": "Security",
+  "display_order": 20,
+  "is_active": true
+}

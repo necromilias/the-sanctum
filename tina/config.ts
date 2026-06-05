@@ -1,9 +1,10 @@
 import { defineConfig } from "tinacms";
 
 export default defineConfig({
+  // Pure local mode - no cloud at all
   branch: "main",
-  clientId: "6dac69d1-9aee-4fef-9f07-115a4ebabc2f",
-  token: "ac6476e3df6827d30d95ed7c6757de15eb797382",
+  clientId: "",
+  token: "",
 
   build: {
     outputFolder: "admin",
@@ -15,6 +16,11 @@ export default defineConfig({
       mediaRoot: "images",
       publicFolder: "public",
     },
+  },
+
+  // This tells Tina to skip cloud checks
+  search: {
+    indexerToken: "",
   },
 
   schema: {
@@ -58,7 +64,7 @@ export default defineConfig({
           fields: [
             { type: "string", name: "section_type", label: "Section Type", options: ["bio", "skills", "timeline", "contact"] },
             { type: "string", name: "title", label: "Title" },
-            { type: "rich-text", name: "content", label: "Content", isBody: true },
+            { type: "rich-text", name: "content", label: "Content" },
             { type: "number", name: "display_order", label: "Display Order" },
           ],
       },

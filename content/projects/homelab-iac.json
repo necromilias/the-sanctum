@@ -1,0 +1,15 @@
+{
+  "title": "The-Trove",
+  "description": "My homelab, the anvil, this is where the work happens!",
+  "technologies": [
+    "Docker",
+    "Linux",
+    "Ubuntu Server",
+    "Cloudflare"
+  ],
+  "live_url": "",
+  "github_url": "",
+  "status": "in-progress",
+  "started_at": "2025-10-19T00:00:00.000Z",
+  "display_order": 20
+}

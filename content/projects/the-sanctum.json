@@ -1,0 +1,16 @@
+{
+  "title": "The-Sanctum",
+  "description": "Personal website and homelab hub built with React, Tailwind, and TinaCMS. Terminal-inspired interface for services, projects, and notes.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Tailwind",
+    "Vite",
+    "TinaCMS"
+  ],
+  "live_url": "",
+  "github_url": "https://github.com/necromilias/the-sanctum",
+  "status": "in-progress",
+  "started_at": "2026-06-01T00:00:00.000Z",
+  "display_order": 10
+}

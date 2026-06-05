@@ -5,5 +5,6 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co; img-src 'self' data: https://images.pexels.com; frame-ancestors 'none'
 
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
+# Uncomment/adjust the line below if you want to noindex a preview domain
+# https://your-preview.pages.dev/*
+#   X-Robots-Tag: noindex

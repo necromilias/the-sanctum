@@ -41,7 +41,7 @@ export default function Home() {
     Welcome to <span className="text-cyan-400">the-sanctum</span>
     </h1>
     <p className="text-ghost-300 leading-relaxed max-w-md">
-    My personal homelab hub. Self-hosted services, projects, and notes from the crucible.
+    My personal homelab hub. Self-hosted services, projects, and notes forged in the-crucible and the-trove.
     </p>
     </div>
 
