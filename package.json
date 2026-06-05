@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tina build && vite build",
+    "build": "vite build",
     "admin:dev": "tinacms dev -c \"vite\"",
-    "preview": "vite preview",
-    "tina:build": "tinacms build"
-},
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
     "lucide-react": "^0.344.0",
