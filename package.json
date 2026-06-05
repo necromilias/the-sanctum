@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:admin && vite build",
+    "build:admin": "tinacms build --local --skip-cloud-checks",
+    "build:pages": "npm run build:admin && vite build && rm -rf dist/admin",
     "admin:dev": "tinacms dev -c \"vite\"",
     "preview": "vite preview"
   },
