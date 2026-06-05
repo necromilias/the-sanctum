@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void-900 text-ghost-200 font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    @apply bg-cyan-500/30 text-cyan-200;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-void-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-panel-500 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyan-700;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-panel-800/80 backdrop-blur-sm border border-ghost-700 rounded-xl shadow-panel;
+  }
+
+  .glass-panel-hover {
+    @apply glass-panel transition-all duration-300
+      hover:border-cyan-500/40 hover:shadow-glow hover:bg-panel-700/80;
+  }
+
+  .terminal-text {
+    @apply font-mono text-cyan-400;
+  }
+
+  .nav-link {
+    @apply font-mono text-sm text-ghost-300 transition-colors duration-200
+      hover:text-cyan-400 px-3 py-1.5 rounded-lg hover:bg-ghost-700;
+  }
+
+  .nav-link-active {
+    @apply font-mono text-sm text-cyan-400 bg-cyan-500/10 border border-cyan-500/25
+      px-3 py-1.5 rounded-lg;
+  }
+
+  .badge {
+    @apply font-mono text-xs px-2 py-0.5 rounded border;
+  }
+
+  .badge-planned {
+    @apply badge text-ghost-300 border-ghost-600 bg-ghost-700/30;
+  }
+
+  .badge-in-progress {
+    @apply badge text-warning-400 border-warning-500/40 bg-warning-500/10;
+  }
+
+  .badge-completed {
+    @apply badge text-success-400 border-success-500/40 bg-success-500/10;
+  }
+
+  .section-heading {
+    @apply font-mono text-xs tracking-widest text-cyan-500/70 uppercase mb-6;
+  }
+
+  .page-title {
+    @apply text-3xl font-semibold text-ghost-50 leading-tight;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(0, 180, 216, 0.6);
+  }
+
+  .border-glow {
+    box-shadow: 0 0 0 1px rgba(0, 180, 216, 0.3), 0 0 16px rgba(0, 180, 216, 0.1);
+  }
+}
