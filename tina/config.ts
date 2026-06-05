@@ -1,11 +1,9 @@
 import { defineConfig } from "tinacms";
 
-const branch = process.env.GITHUB_BRANCH || "main";
-
 export default defineConfig({
-  branch,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,   // from Tina Cloud
-  token: process.env.TINA_TOKEN,                     // from Tina Cloud
+  branch: "main",
+  clientId: "6dac69d1-9aee-4fef-9f07-115a4ebabc2f",
+  token: "ac6476e3df6827d30d95ed7c6757de15eb797382",
 
   build: {
     outputFolder: "admin",
@@ -21,56 +19,37 @@ export default defineConfig({
 
   schema: {
     collections: [
-      // Services Collection
       {
         name: "service",
         label: "Services",
         path: "content/services",
         format: "json",
           fields: [
-            { type: "string", name: "name", label: "Name", required: true, isTitle: true },
+            { type: "string", name: "name", label: "Name", isTitle: true, required: true },
             { type: "string", name: "description", label: "Description" },
             { type: "string", name: "url", label: "URL", required: true },
-            { type: "string", name: "icon_name", label: "Icon Name (Lucide)" },
-                            { type: "string", name: "category", label: "Category" },
-                            { type: "number", name: "display_order", label: "Display Order" },
-                            { type: "boolean", name: "is_active", label: "Active", default: true },
+            { type: "string", name: "icon_name", label: "Icon Name" },
+            { type: "string", name: "category", label: "Category" },
+            { type: "number", name: "display_order", label: "Display Order" },
+            { type: "boolean", name: "is_active", label: "Active", default: true },
           ],
       },
-
-      // Projects Collection
       {
         name: "project",
         label: "Projects",
         path: "content/projects",
         format: "json",
           fields: [
-            { type: "string", name: "title", label: "Title", required: true, isTitle: true },
+            { type: "string", name: "title", label: "Title", isTitle: true, required: true },
             { type: "string", name: "description", label: "Description" },
-            {
-              type: "string",
-              name: "technologies",
-              label: "Technologies",
-              list: true,           // This makes it an array
-              ui: {
-                component: "tags"   // Nice UI for adding tags
-              }
-            },
+            { type: "string", name: "technologies", label: "Technologies", list: true },
             { type: "string", name: "live_url", label: "Live URL" },
             { type: "string", name: "github_url", label: "GitHub URL" },
-            {
-              type: "string",
-              name: "status",
-              label: "Status",
-              options: ["planned", "in-progress", "completed"],
-              required: true
-            },
+            { type: "string", name: "status", label: "Status", options: ["planned", "in-progress", "completed"] },
             { type: "datetime", name: "started_at", label: "Started At" },
             { type: "number", name: "display_order", label: "Display Order" },
           ],
       },
-
-      // About Sections
       {
         name: "about",
         label: "About Sections",
