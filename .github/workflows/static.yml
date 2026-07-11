@@ -41,6 +41,11 @@ jobs:
       - name: Copy CNAME to dist
         run: cp CNAME ./dist/CNAME || echo "micksfoundry.org" > ./dist/CNAME
 
+      # SPA fallback: GitHub Pages serves 404.html for unknown paths,
+      # so deep links like /services boot the app and React Router takes over
+      - name: Copy index.html to 404.html
+        run: cp ./dist/index.html ./dist/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
