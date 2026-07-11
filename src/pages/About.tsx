@@ -22,16 +22,10 @@ export default function About() {
     .sort((a, b) => (a.display_order ?? 999) - (b.display_order ?? 999));
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12 animate-fade-in">
-    <div className="fixed inset-0 pointer-events-none">
-    <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-100" />
-    <div className="absolute inset-0 bg-glow-cyan" />
-    </div>
-
-    <div className="relative z-10">
-    <div className="mb-10">
-    <p className="section-heading">~/about</p>
-    <h1 className="page-title mb-2">About Me</h1>
+    <main className="relative max-w-4xl mx-auto px-8 py-8 animate-fade-in">
+    <div className="mb-7">
+    <p className="font-mono text-[11px] tracking-widest text-cyan-500/70 uppercase mb-1.5">~/about</p>
+    <h1 className="text-2xl font-semibold text-ghost-50 mb-1.5">About Me</h1>
     <p className="text-ghost-400 text-sm">Welcome to the sanctum.</p>
     </div>
 
@@ -72,7 +66,6 @@ export default function About() {
         })}
       </div>
     )}
-    </div>
     </main>
   );
 }

@@ -33,7 +33,7 @@ export default defineConfig({
           fields: [
             { type: "string", name: "name", label: "Name", isTitle: true, required: true },
             { type: "string", name: "description", label: "Description" },
-            { type: "string", name: "url", label: "URL", required: true },
+            { type: "string", name: "url", label: "URL (probe reference only — never rendered)" },
             { type: "string", name: "icon_name", label: "Icon Name" },
             { type: "string", name: "category", label: "Category" },
             { type: "number", name: "display_order", label: "Display Order" },

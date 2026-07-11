@@ -1,0 +1,8 @@
+{
+  "name": "SillyTavern",
+  "description": "AI language exploration, assisted storytelling.",
+  "icon_name": "MessageSquare",
+  "category": "AI",
+  "display_order": 5,
+  "is_active": true
+}

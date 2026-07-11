@@ -1,29 +1,34 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from './components/Nav';
-import Home from './pages/Home';
+import Sidebar from './components/Sidebar';
+import Console from './components/Console';
+import { StatusProvider } from './hooks/useStatus';
+import Dashboard from './pages/Dashboard';
 import Services from './pages/Services';
+import Systems from './pages/Systems';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <Nav />
-        <div className="flex-1">
-          <Routes>
-            <Route path="/"          element={<Home />} />
-            <Route path="/services"  element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/about"     element={<About />} />
-          </Routes>
+      <StatusProvider>
+        <div className="min-h-screen flex">
+          <Sidebar />
+          <div className="flex-1 relative min-w-0">
+            <div className="fixed inset-0 pointer-events-none bg-grid-pattern bg-grid" />
+            <div className="fixed inset-0 pointer-events-none bg-glow-cyan" />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/systems" element={<Systems />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+            <div className="h-44" />
+            <Console />
+          </div>
         </div>
-        <footer className="border-t border-ghost-700 py-4 px-4 text-center">
-          <span className="font-mono text-xs text-ghost-500">
-            node@homelab ~ <span className="text-cyan-500/60">■</span>
-          </span>
-        </footer>
-      </div>
+      </StatusProvider>
     </BrowserRouter>
   );
 }

@@ -1,9 +1,10 @@
 {
   "title": "The-Crucible",
-  "description": "My desktop, running CachyOS, this is the main workhorse where I'm developing my technical skills!",
+  "description": "My desktop, running CachyOS — the main workhorse for developing my technical skills, now hosting my graphics card for the AI Horde.",
   "technologies": [
     "Arch Linux",
-    "SSH"
+    "SSH",
+    "AI Horde"
   ],
   "status": "in-progress",
   "started_at": "2026-05-20T06:05:42.910Z"
