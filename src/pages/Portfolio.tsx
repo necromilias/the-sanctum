@@ -34,14 +34,14 @@ export default function Portfolio() {
     .sort((a, b) => (a.display_order ?? 999) - (b.display_order ?? 999));
 
   return (
-    <main className="relative max-w-5xl mx-auto px-8 py-8 animate-fade-in">
+    <main className="relative max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8 animate-fade-in">
       <div className="mb-7">
         <p className="font-mono text-[11px] tracking-widest text-cyan-500/70 uppercase mb-1.5">~/portfolio</p>
         <h1 className="text-2xl font-semibold text-ghost-50 mb-1.5">Portfolio & Projects</h1>
         <p className="text-ghost-400 text-sm">A living record of what I'm building.</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {projects.length === 0 ? (
           <div className="col-span-full glass-panel p-8 text-center text-ghost-400 font-mono text-sm">
             No projects yet. Use the Tina admin to add some.

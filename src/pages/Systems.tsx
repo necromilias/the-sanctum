@@ -1,5 +1,5 @@
 import { Monitor, Server } from 'lucide-react';
-import { useStatus, statusColor, formatUptime, ServiceStatus } from '../hooks/useStatus';
+import { useStatus, statusColor, formatUptime, type ServiceStatus } from '../hooks/useStatus';
 
 const chip = (s: ServiceStatus) => {
   const c = statusColor(s);
@@ -39,14 +39,14 @@ export default function Systems() {
   const kudosLine = horde && typeof horde === 'object' ? `${horde.kudos.toLocaleString()} earned` : '—';
 
   return (
-    <main className="relative max-w-5xl mx-auto px-8 py-8 animate-fade-in">
+    <main className="relative max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8 animate-fade-in">
       <div className="mb-7">
         <p className="font-mono text-[11px] tracking-widest text-cyan-500/70 uppercase mb-1.5">~/systems</p>
         <h1 className="text-2xl font-semibold text-ghost-50 mb-1.5">Systems &amp; Hardware</h1>
         <p className="text-ghost-400 text-sm">The machines behind the sanctum.</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* The-Crucible */}
         <div className="glass-panel p-6 flex flex-col gap-4">
           <div className="flex items-center justify-between">

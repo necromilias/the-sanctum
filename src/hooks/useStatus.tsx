@@ -1,18 +1,17 @@
+/* eslint-disable react-refresh/only-export-components -- status helpers share the provider's domain */
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 export type ServiceStatus = 'checking' | 'online' | 'down' | 'shielded';
 
 // Probe targets only — never rendered as links.
-// Plex is unbound from a URL (probes plex.tv); Pi-hole is unbound (probes tavern as a proxy for the trove being up).
-// Vaultwarden is intentionally NOT probed — not exposed to the open net ("shielded").
+// Only public services hosted by The-Trove are probed. Private/unbound services are
+// reported as shielded rather than inferring their health from unrelated endpoints.
 const PROBE_URLS: Record<string, string> = {
   SillyTavern: 'https://tavern.micksfoundry.org',
   FoundryVTT: 'https://game.micksfoundry.org',
-  Plex: 'https://plex.tv',
-  'Pi-hole': 'https://tavern.micksfoundry.org',
 };
 
-export const SHIELDED_SERVICES = ['Vaultwarden'];
+export const SHIELDED_SERVICES = ['Vaultwarden', 'Plex', 'Pi-hole'];
 
 const HORDE_WORKER = 'MickRocinanteWorker';
 const HORDE_API = `https://aihorde.net/api/v2/workers?name=${HORDE_WORKER}`;
@@ -56,20 +55,24 @@ export function StatusProvider({ children }: { children: ReactNode }) {
   const [lastCheck, setLastCheck] = useState<Date | null>(null);
 
   useEffect(() => {
-    const checkAll = () => {
-      setLastCheck(new Date());
-      Object.entries(PROBE_URLS).forEach(async ([name, url]) => {
-        const ok = await probe(url);
-        setStatus((s) => ({ ...s, [name]: ok ? 'online' : 'down' }));
-      });
-      fetch(HORDE_API)
-        .then((r) => r.json())
+    const checkAll = async () => {
+      const probes = await Promise.all(
+        Object.entries(PROBE_URLS).map(async ([name, url]) => [name, await probe(url)] as const),
+      );
+      setStatus(Object.fromEntries(probes.map(([name, ok]) => [name, ok ? 'online' : 'down'])));
+
+      await fetch(HORDE_API, { cache: 'no-store' })
+        .then((r) => {
+          if (!r.ok) throw new Error(`AI Horde returned ${r.status}`);
+          return r.json();
+        })
         .then((data) => {
           const w = Array.isArray(data) ? data[0] : null;
           if (w) setHorde({ online: !!w.online, uptime: w.uptime || 0, served: w.requests_fulfilled || 0, kudos: w.kudos_rewards || 0 });
           else setHorde('notFound');
         })
         .catch(() => setHorde('error'));
+      setLastCheck(new Date());
     };
     checkAll();
     const iv = setInterval(checkAll, 60000);

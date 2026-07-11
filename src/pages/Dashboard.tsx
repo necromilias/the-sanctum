@@ -32,8 +32,8 @@ export default function Dashboard() {
   );
 
   return (
-    <main className="relative max-w-5xl mx-auto px-8 py-8 animate-fade-in">
-      <div className="flex items-baseline justify-between mb-6">
+    <main className="relative max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8 animate-fade-in">
+      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-6">
         <div>
           <p className="font-mono text-[11px] tracking-widest text-cyan-500/70 uppercase mb-1.5">Personal node — online</p>
           <h1 className="text-2xl font-semibold text-ghost-50">Sanctum status</h1>
@@ -43,7 +43,7 @@ export default function Dashboard() {
         </span>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
         <Link to="/systems" className="block glass-panel p-5 hover:border-cyan-500/40 transition-all">
           <div className="flex items-center justify-between mb-2.5">
             <span className="font-mono text-sm text-ghost-100">the-crucible</span>
@@ -61,7 +61,7 @@ export default function Dashboard() {
           </div>
           <div className="font-mono text-xs text-ghost-400 flex flex-col gap-0.5">
             <span>ubuntu server · docker host</span>
-            <span className="text-cyan-400">{services.length} services running</span>
+            <span className="text-cyan-400">{services.length} services configured</span>
           </div>
         </Link>
       </div>
@@ -77,8 +77,8 @@ export default function Dashboard() {
             <div key={svc._key} className="flex items-center gap-4 px-5 py-3 border-b border-ghost-700 last:border-b-0 hover:bg-cyan-500/5 transition-colors">
               <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: statusColor(s) }} />
               <span className="font-mono text-[13px] text-ghost-100 w-32 flex-shrink-0">{svc.name}</span>
-              <span className="text-xs text-ghost-400 flex-1 truncate">{svc.description}</span>
-              <span className="font-mono text-[11px] text-ghost-500">the-trove</span>
+              <span className="hidden sm:block text-xs text-ghost-400 flex-1 truncate">{svc.description}</span>
+              <span className="hidden sm:inline font-mono text-[11px] text-ghost-500">the-trove</span>
             </div>
           );
         })}

@@ -5,7 +5,7 @@ import { useStatus, serviceStatus, SHIELDED_SERVICES, formatUptime } from '../ho
 interface Line { text: string; dim: boolean; }
 
 const PAGES = ['dashboard', 'services', 'systems', 'portfolio', 'about'];
-const PROBED = ['SillyTavern', 'FoundryVTT', 'Plex', 'Pi-hole'];
+const PROBED = ['SillyTavern', 'FoundryVTT'];
 
 export default function Console() {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ export default function Console() {
     <div
       ref={boxRef}
       onClick={() => inputRef.current?.focus()}
-      className="fixed left-56 right-4 bottom-4 z-30 bg-void-900/95 backdrop-blur-md border border-cyan-500/25 rounded-xl shadow-glow px-5 py-3.5 font-mono text-xs flex flex-col gap-1 cursor-text max-h-[150px] overflow-y-auto"
+      className="fixed left-20 md:left-56 right-3 md:right-4 bottom-3 md:bottom-4 z-30 bg-void-900/95 backdrop-blur-md border border-cyan-500/25 rounded-xl shadow-glow px-3 md:px-5 py-3 md:py-3.5 font-mono text-xs flex flex-col gap-1 cursor-text max-h-[150px] overflow-y-auto"
     >
       {lines.map((l, i) => (
         <span key={i} className={l.dim ? 'text-ghost-400 whitespace-pre-wrap break-words' : 'text-cyan-400 whitespace-pre-wrap break-words'}>
@@ -90,7 +90,8 @@ export default function Console() {
         </span>
       ))}
       <div className="flex items-center gap-2">
-        <span className="text-cyan-400">guest@sanctum:~$</span>
+        <span className="text-cyan-400 hidden sm:inline">guest@sanctum:~$</span>
+        <span className="text-cyan-400 sm:hidden">$</span>
         <input
           ref={inputRef}
           value={input}
