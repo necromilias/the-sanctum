@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components -- status helpers share the provider's domain */
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-export type ServiceStatus = 'checking' | 'online' | 'down' | 'shielded';
+export type ServiceStatus = 'checking' | 'reachable' | 'unreachable' | 'shielded';
 
 // Probe targets only — never rendered as links.
 // Only public services hosted by The-Trove are probed. Private/unbound services are
@@ -27,16 +27,12 @@ interface StatusState {
   status: Record<string, ServiceStatus>;
   horde: HordeWorker | 'error' | 'notFound' | null;
   lastCheck: Date | null;
-  troveStatus: ServiceStatus;
-  crucibleStatus: ServiceStatus;
 }
 
 const StatusContext = createContext<StatusState>({
   status: {},
   horde: null,
   lastCheck: null,
-  troveStatus: 'checking',
-  crucibleStatus: 'checking',
 });
 
 function probe(url: string, timeout = 6000): Promise<boolean> {
@@ -59,7 +55,7 @@ export function StatusProvider({ children }: { children: ReactNode }) {
       const probes = await Promise.all(
         Object.entries(PROBE_URLS).map(async ([name, url]) => [name, await probe(url)] as const),
       );
-      setStatus(Object.fromEntries(probes.map(([name, ok]) => [name, ok ? 'online' : 'down'])));
+      setStatus(Object.fromEntries(probes.map(([name, ok]) => [name, ok ? 'reachable' : 'unreachable'])));
 
       await fetch(HORDE_API, { cache: 'no-store' })
         .then((r) => {
@@ -79,16 +75,8 @@ export function StatusProvider({ children }: { children: ReactNode }) {
     return () => clearInterval(iv);
   }, []);
 
-  const names = Object.keys(PROBE_URLS);
-  const resolved = names.map((n) => status[n]).filter(Boolean);
-  const troveStatus: ServiceStatus = resolved.includes('online')
-    ? 'online'
-    : resolved.length === names.length ? 'down' : 'checking';
-  const crucibleStatus: ServiceStatus =
-    horde === null ? 'checking' : typeof horde === 'object' && horde.online ? 'online' : 'down';
-
   return (
-    <StatusContext.Provider value={{ status, horde, lastCheck, troveStatus, crucibleStatus }}>
+    <StatusContext.Provider value={{ status, horde, lastCheck }}>
       {children}
     </StatusContext.Provider>
   );
@@ -102,10 +90,15 @@ export function serviceStatus(name: string, status: Record<string, ServiceStatus
 }
 
 export function statusColor(s: ServiceStatus): string {
-  if (s === 'online') return '#4ade80';
-  if (s === 'down') return '#f87171';
+  if (s === 'reachable') return '#4ade80';
+  if (s === 'unreachable') return '#f87171';
   if (s === 'shielded') return 'rgba(0,180,216,0.45)';
   return 'rgba(255,255,255,0.3)';
+}
+
+export function statusLabel(s: ServiceStatus): string {
+  if (s === 'shielded') return 'not publicly probed';
+  return s;
 }
 
 export function formatUptime(sec: number): string {

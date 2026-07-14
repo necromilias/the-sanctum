@@ -1,4 +1,4 @@
-import { useStatus, serviceStatus, statusColor } from '../hooks/useStatus';
+import { useStatus, serviceStatus, statusColor, statusLabel } from '../hooks/useStatus';
 
 interface Service {
   name: string;
@@ -21,8 +21,8 @@ export default function Services() {
     <main className="relative max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8 animate-fade-in">
       <div className="mb-7">
         <p className="font-mono text-[11px] tracking-widest text-cyan-500/70 uppercase mb-1.5">~/services</p>
-        <h1 className="text-2xl font-semibold text-ghost-50 mb-1.5">Self-Hosted Services</h1>
-        <p className="text-ghost-400 text-sm">Services running in the sanctum.</p>
+        <h1 className="text-2xl font-semibold text-ghost-50 mb-1.5">Featured Self-Hosted Services</h1>
+        <p className="text-ghost-400 text-sm">A selected public view, not a complete operational inventory.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -49,6 +49,7 @@ export default function Services() {
 
                 <div className="flex items-center justify-between pt-2.5 border-t border-ghost-700 font-mono text-[11px] text-ghost-500">
                   <span>host: the-trove</span>
+                  <span>{statusLabel(s)}</span>
                 </div>
               </div>
             );

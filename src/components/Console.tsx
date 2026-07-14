@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStatus, serviceStatus, SHIELDED_SERVICES, formatUptime } from '../hooks/useStatus';
+import { useStatus, serviceStatus, statusLabel, SHIELDED_SERVICES, formatUptime } from '../hooks/useStatus';
 
 interface Line { text: string; dim: boolean; }
 
@@ -52,16 +52,16 @@ export default function Console() {
       case 'status': {
         const rows = PROBED.map((n) => {
           const s = serviceStatus(n, status);
-          return { text: `${n.toLowerCase()}: ${s}`, dim: s !== 'online' };
+          return { text: `${n.toLowerCase()}: ${statusLabel(s)}`, dim: s !== 'reachable' };
         });
-        SHIELDED_SERVICES.forEach((n) => rows.push({ text: `${n.toLowerCase()}: shielded`, dim: true }));
+        SHIELDED_SERVICES.forEach((n) => rows.push({ text: `${n.toLowerCase()}: not publicly probed`, dim: true }));
         print(rows);
         break;
       }
       case 'horde': {
         if (!horde) print([{ text: 'checking…', dim: true }]);
         else if (horde === 'error' || horde === 'notFound') print([{ text: 'worker unavailable', dim: true }]);
-        else print([{ text: `MickRocinanteWorker: ${horde.online ? 'online' : 'offline'} · ${horde.served.toLocaleString()} served · ${horde.kudos.toLocaleString()} kudos · up ${formatUptime(horde.uptime)}`, dim: false }]);
+        else print([{ text: `MickRocinanteWorker: ${horde.online ? 'online' : 'offline'} · ${horde.served.toLocaleString()} served · ${horde.kudos.toLocaleString()} kudos · worker-reported uptime ${formatUptime(horde.uptime)}`, dim: false }]);
         break;
       }
       case 'whoami':

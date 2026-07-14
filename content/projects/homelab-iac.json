@@ -1,6 +1,6 @@
 {
   "title": "The-Trove",
-  "description": "My homelab, the anvil — runs the Docker stack behind every service in the sanctum, now serving SillyTavern.",
+  "description": "My primary homelab server, hosting pooled storage and a collection of self-hosted services with Docker Compose.",
   "technologies": [
     "Docker",
     "Linux",

@@ -7,7 +7,7 @@ const STATUS_CONFIG = {
   completed: { label: 'Completed', badge: 'badge-completed', icon: CheckCircle2 },
 } as const;
 
-const MACHINE_PROJECTS = ['The-Crucible', 'The-Trove'];
+const MACHINE_PROJECTS = ['The-Forge', 'The-Trove'];
 
 interface Project {
   title: string;

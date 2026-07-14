@@ -1,104 +1,90 @@
 # the-sanctum
 
-My personal homelab hub — built with love, Tailwind, and self-hosting spirit.
+The Sanctum is Mick's public ops dashboard and technical portfolio. It presents a deliberately selected, public-safe view of current systems, self-hosted services, workloads, and projects; it is not the operational source of truth for the homelab.
 
-A static React site (Vite) with a terminal-inspired dark theme for showcasing self-hosted services, projects/portfolio, and about info.
+## Current architecture
 
-## Tech
+- React 18, TypeScript, Vite, and React Router
+- Tailwind CSS with a terminal-inspired interface
+- File-based JSON content under `content/`
+- TinaCMS for local content editing
+- Browser-side public endpoint reachability checks
+- Public AI Horde worker status from the AI Horde API
+- GitHub Pages deployment at `micksfoundry.org`
 
-- Vite + React 18 + TypeScript + React Router
-- Tailwind CSS (custom KDE Andromeda-inspired palette + glassmorphism)
-- TinaCMS (local mode, file-based JSON content in `content/`)
-- Lucide icons
+The major routes are the dashboard, featured services, systems, portfolio, and about pages. A floating read-only console provides navigation and the same limited public status information.
 
-Optional/Prepared: Supabase (schema in `supabase/`, client dep present but not wired).
+Public endpoint checks report only whether a route responds from the visitor's browser. They do not establish application or host health. Services without a suitable public check are labelled as not publicly probed.
 
-## Getting up and running
+## Local development
 
 ```bash
 cd ~/Projects/the-sanctum/project
-
-# Install deps (if needed)
-npm install
-
-# Run the site (standard dev server)
+npm ci
 npm run dev
-# → http://localhost:5173
-
-# Run with TinaCMS visual editor (recommended for content)
-npm run admin:dev
-# → Site still at http://localhost:5173
-# → Admin UI at http://localhost:4001/admin
 ```
 
-In the Tina admin you can create/edit:
+The Vite development server is available at `http://localhost:5173` by default.
 
-- Services (`content/services/*.json`)
-- Projects (`content/projects/*.json`)
-- About sections (`content/about/*.json`)
-
-Content is plain JSON files committed to git. Edit locally, commit, deploy.
-
-## Building for production / deploy
+For the local Tina editor:
 
 ```bash
-# (Re)build the Tina admin static assets for /admin (local mode)
-npx tinacms build --local --skip-cloud-checks
+npm run admin:dev
+```
 
-# Build the site
-npm run build
-# Output: ./dist/
+The editor manages:
 
-# Preview the production build
+- Services in `content/services/*.json`
+- Projects in `content/projects/*.json`
+- About sections in `content/about/*.json`
+
+Content is stored as ordinary JSON and committed with the source. Tina is a local editing workflow; there is no production content-editing backend.
+
+## Checks and builds
+
+```bash
+# TypeScript project check
+npx tsc -b --pretty false
+
+# Lint maintained source and configuration
+npx eslint src tina/config.ts vite.config.ts
+
+# Production build used by GitHub Pages
+npm run build:pages
+
+# Preview an existing build
 npm run preview
 ```
 
-### Deploying to your domain
+`build:pages` builds Tina's local assets, builds the Vite application, and removes `dist/admin` from the published output.
 
-The site is a pure static SPA. Copy or upload the contents of `dist/` to your web root.
+## Deployment
 
-**Examples:**
+Pushes to `main` trigger `.github/workflows/static.yml`. The workflow:
 
-- **Cloudflare Pages / Netlify**: Connect the repo (or drag dist/). The `public/_headers` (with CSP) gets copied to dist/.
-- **Self-hosted (Caddy / nginx / Apache)**: Point your server at the `dist/` folder.
-  - Caddy example:
-    ```
-    the-sanctum.example.com {
-      root * /path/to/the-sanctum/dist
-      file_server
-    }
-    ```
-- **Homelab + tunnel**: Serve locally and expose via Cloudflare Tunnel / Tailscale Funnel / ngrok.
+1. Installs the locked dependencies with Node.js 20.
+2. Runs `npm run build:pages`.
+3. Copies `CNAME` and the SPA fallback into `dist/`.
+4. Publishes `dist/` through GitHub Pages.
 
-Update `index.html` for your real title, OG image, etc. Remove the bolt.new meta tags.
+The custom domain is `micksfoundry.org`. Production does not publish the Tina admin.
 
-After content changes via Tina admin, rebuild and redeploy (or use a simple CI that runs the build steps).
+GitHub Pages serves the copied `404.html` for direct requests to client-side routes. This lets React Router load the requested page in a browser, although the initial HTTP response remains a 404.
 
-#### Cloudflare Pages specific notes
+## Public information boundary
 
-- **Build command**: `npx tinacms build --local --skip-cloud-checks && npm run build`
-  - This ensures the Tina admin UI is up-to-date with your latest schema before the Vite build.
-- **Publish directory**: `dist`
-- The `dist/_headers` file (from `public/_headers`) will automatically apply security headers and CSP.
-- **Size note**: The Tina admin (`dist/admin/`) is ~11 MB. It is included by default for convenience (you get `/admin` in production too). If you want a smaller deploy you can add `&& rm -rf dist/admin` to the build command (the editor shell won't be functional in prod without the Tina dev server anyway).
-- Custom domain: Add it in the Cloudflare Pages dashboard after the first deploy. The site works great behind Cloudflare (including with your existing tunnels if you proxy the Pages domain).
+This repository and its deployed site are public. Content should remain useful as a technical portfolio without becoming a copy of the private operations wiki.
 
-Once pushed, connect the repo in Cloudflare Pages → it will auto-deploy on push to main.
+Do not add:
 
-## Content editing workflow (local-first)
+- credentials, tokens, keys, passwords, or environment values;
+- private network or Tailscale addresses;
+- internal secret, backup, recovery, or data paths;
+- firewall weaknesses, recovery gaps, or detailed exposure topology;
+- private logs, shell history, or credential-handling details;
+- a complete inventory of private services merely because they exist.
 
-1. `npm run admin:dev`
-2. Open admin, add/edit entries (they save as JSON under `content/`)
-3. See changes reflected live in the Vite site (HMR)
-4. `git add content/ && git commit && git push`
-5. Rebuild + deploy
-
-## Notes
-
-- No live Tina editing on the static production deploy (the `/admin` UI is mainly for local/dev use; the GraphQL backend runs only during `admin:dev` / `tinacms build`).
-- If you want fully dynamic data, wire the Supabase client + the provided migration.
-- There is also an unused `content/posts/` (hello-world.md) — extend the router + pages if you want a blog/notes section later.
-- Icon names in services come from lucide-react (e.g. "Server", "Film", "Shield", "KeyRound").
+High-level hardware, operating systems, selected technologies, public routes, and intentionally public workload statistics are appropriate when current and useful.
 
 ## License
 

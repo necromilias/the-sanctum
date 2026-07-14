@@ -1,6 +1,6 @@
 {
   "title": "The-Sanctum",
-  "description": "Personal website and homelab hub built with React, Tailwind, and TinaCMS. Terminal-inspired interface for services, projects, and notes.",
+  "description": "Public ops dashboard and technical portfolio built with React, Tailwind, and TinaCMS, with a terminal-inspired view of selected systems, services, and projects.",
   "technologies": [
     "React",
     "TypeScript",

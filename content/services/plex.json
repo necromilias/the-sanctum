@@ -1,7 +1,6 @@
 {
   "name": "Plex",
   "description": "Media server for movies, TV, and music streaming.",
-  "url": "https://app.plex.tv/",
   "icon_name": "Film",
   "category": "Media",
   "display_order": 10,

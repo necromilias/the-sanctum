@@ -1,6 +1,6 @@
 {
   "section_type": "skills",
   "title": "Current Stack",
-  "content": "Desktop: Arch Linux (CachyOS)\n\n\nHomelab: Ubuntu Server, Docker, Dockge, Vaultwarden, Pi-hole, Plex, Foundry VTT\n\n\nDeveloping skills: Git, Python, JavaScript, and Unity\n\nFocus Areas: Linux administration, self-hosting, software development, automation, homelab infrastructure, and game development\n",
+  "content": "Desktop: CachyOS, KDE Plasma, AI Horde, WhisperX\n\n\nHomelab: Ubuntu Server, Docker Compose, Vaultwarden, Pi-hole, Plex, Foundry VTT\n\n\nDeveloping skills: Git, Python, JavaScript, and Unity\n\nFocus Areas: Linux administration, self-hosting, software development, automation, homelab infrastructure, and game development\n",
   "display_order": 20
 }

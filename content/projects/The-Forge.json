@@ -1,0 +1,11 @@
+{
+  "title": "The-Forge",
+  "description": "My CachyOS desktop and GPU workstation, running AI Horde compute and the WhisperX transcription workflow.",
+  "technologies": [
+    "CachyOS",
+    "AI Horde",
+    "WhisperX"
+  ],
+  "status": "in-progress",
+  "started_at": "2026-05-20T06:05:42.910Z"
+}
