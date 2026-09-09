@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const description = 'Case studies in AI orchestration, organisational memory, creative production and practical infrastructure.';
+---
+
+<BaseLayout title="Work" {description} canonicalPath="/work/">
+  <header class="page-head">
+    <div class="shell">
+      <p class="eyebrow">Case studies</p>
+      <h1>Work with a visible evidence boundary.</h1>
+      <p class="lead">What caused each system to exist, what Mick directed, what proved difficult, what is actually implemented, and what remains outside the claim.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell project-grid work-grid">
+      {projects.map((project) => <ProjectCard {project} headingLevel={2} />)}
+    </div>
+  </section>
+</BaseLayout>

@@ -7,6 +7,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.astro
 dist
 dist-ssr
 *.local
@@ -21,5 +22,3 @@ dist-ssr
 *.sln
 *.sw?
 .env
-
-tina/__generated__

@@ -1,8 +1,0 @@
-{
-  "name": "Plex",
-  "description": "Media server for movies, TV, and music streaming.",
-  "icon_name": "Film",
-  "category": "Media",
-  "display_order": 10,
-  "is_active": true
-}

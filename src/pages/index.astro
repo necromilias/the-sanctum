@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const featured = (await getCollection('work'))
+  .filter(({ data }) => data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const description = 'Systems, automation and local-AI tools built with explicit evidence and human control.';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Mick’s Foundry',
+  url: 'https://micksfoundry.org/',
+  description,
+};
+---
+
+<BaseLayout title="Mick’s Foundry" {description} canonicalPath="/" {structuredData}>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <p class="eyebrow">Independent systems practice · Australia</p>
+        <h1>Mick’s Foundry</h1>
+        <p class="lead">Systems, automation and local-AI tools built with explicit evidence and human control.</p>
+        <div class="button-row">
+          <a class="button button-primary" href="/work/">View the work</a>
+          <a class="button" href="https://github.com/necromilias">Inspect GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-label="Current practice">
+        <p class="kicker">Current practice</p>
+        <p>Design the boundary. Preserve the evidence. Keep consequential decisions human.</p>
+        <p class="mono">Static snapshot / 09.09.2026</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="selected-work">
+    <div class="shell">
+      <div class="section-heading">
+        <span class="section-index">01 / Work</span>
+        <div>
+          <h2 id="selected-work">Selected systems</h2>
+          <p>Three substantial projects spanning AI orchestration, governed knowledge and local creative production.</p>
+        </div>
+      </div>
+      <div class="project-grid">
+        {featured.map((project) => <ProjectCard {project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="background">
+    <div class="shell split">
+      <div>
+        <p class="section-index">02 / Practice</p>
+        <h2 id="background">Practical work, not a title exercise.</h2>
+      </div>
+      <div>
+        <p>Mick is a career changer with a background in hands-on industrial work. The current practice applies that same fault-finding instinct to Linux systems, automation, local AI and evidence-led project delivery.</p>
+        <p>He identifies the problem, designs constraints and operating procedures, directs AI-assisted implementation, and decides what evidence is sufficient for acceptance. The contribution is described accurately; neither hidden behind “the AI did it” nor inflated into sole authorship of every line.</p>
+        <a class="text-link" href="/about/">Read the working approach <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="focus">
+    <div class="shell split">
+      <div>
+        <p class="section-index">03 / Now</p>
+        <h2 id="focus">Current technical focus</h2>
+        <p>Static, dated—not a fake operations console.</p>
+      </div>
+      <ul class="focus-list">
+        <li>Bounded AI workers and acceptance workflows</li>
+        <li>Repository-centred organisational memory</li>
+        <li>Resumable local-AI audio production</li>
+        <li>Native Linux desktop reliability</li>
+        <li>Storage, recovery and operational automation</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="inspect">
+    <div class="shell split">
+      <div>
+        <p class="section-index">04 / Evidence</p>
+        <h2 id="inspect">Claims should have somewhere to land.</h2>
+      </div>
+      <div>
+        <p>Case studies distinguish implemented work from active or incomplete work, name the public evidence boundary, and link to source material when that material can safely be public.</p>
+        <div class="button-row">
+          <a class="button button-primary" href="/work/">All case studies</a>
+          <a class="button" href="/lab/">The supporting lab</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

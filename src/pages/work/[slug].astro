@@ -1,0 +1,71 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('work');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+interface Props {
+  project: CollectionEntry<'work'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+const verified = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+}).format(data.lastVerified);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: data.title,
+  description: data.summary,
+  dateModified: data.lastVerified.toISOString().slice(0, 10),
+  url: `https://micksfoundry.org/work/${project.id}/`,
+  ...(data.repository ? { codeRepository: data.repository } : {}),
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  canonicalPath={`/work/${project.id}/`}
+  type="article"
+  {structuredData}
+>
+  <header class="page-head case-head">
+    <div class="shell">
+      <p class="eyebrow">{data.type}</p>
+      <h1>{data.title}</h1>
+      <p class="lead">{data.summary}</p>
+      <dl class="project-meta">
+        <div><dt>Status</dt><dd>{data.status}</dd></div>
+        <div><dt>Verified</dt><dd>{verified}</dd></div>
+        <div><dt>Evidence</dt><dd>{data.evidence.length ? `${data.evidence.length} public link${data.evidence.length === 1 ? '' : 's'}` : 'Private / descriptive'}</dd></div>
+        <div><dt>Type</dt><dd>{data.type}</dd></div>
+      </dl>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell case-layout">
+      <article class="prose">
+        <p class="status-note"><strong>Current status:</strong> {data.statusNote}</p>
+        <Content />
+        <p class="boundary"><strong>Public boundary:</strong> {data.publicBoundary}</p>
+      </article>
+      <aside class="case-aside" aria-label="Project evidence and role">
+        <h2>Mick’s role</h2>
+        <p>{data.role}</p>
+        <h2>Areas</h2>
+        <ul>{data.areas.map((area) => <li>{area}</li>)}</ul>
+        {(data.repository || data.evidence.length > 0) && <h2>Inspect</h2>}
+        <ul>
+          {data.repository && <li><a href={data.repository}>Public repository <span aria-hidden="true">↗</span></a></li>}
+          {data.evidence.map(({ label, url }) => <li><a href={url}>{label} <span aria-hidden="true">↗</span></a></li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'work'>;
+  headingLevel?: 2 | 3;
+}
+
+const { project, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+const { title, summary, status, statusNote, areas, lastVerified } = project.data;
+const verified = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
+}).format(lastVerified);
+---
+
+<article class="project-card">
+  <div class="card-topline">
+    <span class:list={['status', `status-${status}`]}>{status}</span>
+    <span class="verified">Verified {verified}</span>
+  </div>
+  <Heading><a href={`/work/${project.id}/`}>{title}</a></Heading>
+  <p>{summary}</p>
+  <p class="status-note">{statusNote}</p>
+  <ul class="tag-list" aria-label={`${title} areas`}>
+    {areas.slice(0, 4).map((area) => <li>{area}</li>)}
+  </ul>
+  <a class="text-link" href={`/work/${project.id}/`}>Read case study <span aria-hidden="true">→</span></a>
+</article>

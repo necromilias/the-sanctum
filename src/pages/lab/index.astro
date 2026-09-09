@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const description = 'A high-level view of The Forge and The Trove, the private infrastructure supporting Mick’s systems and local-AI work.';
+---
+
+<BaseLayout title="Lab" {description} canonicalPath="/lab/">
+  <header class="page-head">
+    <div class="shell">
+      <p class="eyebrow">Supporting infrastructure</p>
+      <h1>The machines are the workshop, not the work.</h1>
+      <p class="lead">The Forge and The Trove underpin development, local-AI production and private services. This page stays deliberately high level.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell split">
+      <article class="lab-card">
+        <p class="kicker">Workstation</p>
+        <h2>The Forge</h2>
+        <p>A Linux workstation used for development, GPU-backed local-AI inference and creative-production workloads. The interesting work is resource control, repeatable environments and diagnosis—not a parts-list flex.</p>
+        <ul class="plain-list">
+          <li>Local model and speech workloads</li>
+          <li>Development and validation environments</li>
+          <li>Resource and process fault isolation</li>
+        </ul>
+      </article>
+      <article class="lab-card">
+        <p class="kicker">Server</p>
+        <h2>The Trove</h2>
+        <p>A Linux server supporting containerised services, storage, backups and private development infrastructure. Operations focus on recovery, controlled exposure and systems that remain understandable under failure.</p>
+        <ul class="plain-list">
+          <li>Containers and private services</li>
+          <li>Storage, backup and recovery</li>
+          <li>Network and access boundaries</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="shell split">
+      <div>
+        <p class="section-index">Public boundary</p>
+        <h2>Useful shape, no attack-surface inventory.</h2>
+      </div>
+      <div>
+        <p>Exact topology, private addresses, credentials, current service exposure and drift-prone hardware values are not published. The portfolio describes engineering capability without turning a home environment into reconnaissance material.</p>
+        <a class="text-link" href="/work/homelab/">Read the operations case study <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

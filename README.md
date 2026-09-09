@@ -1,91 +1,50 @@
-# the-sanctum
+# Mick’s Foundry
 
-The Sanctum is Mick's public ops dashboard and technical portfolio. It presents a deliberately selected, public-safe view of current systems, self-hosted services, workloads, and projects; it is not the operational source of truth for the homelab.
+The Sanctum is the repository codename for [micksfoundry.org](https://micksfoundry.org), Mick’s statically generated public portfolio.
 
-## Current architecture
-
-- React 18, TypeScript, Vite, and React Router
-- Tailwind CSS with a terminal-inspired interface
-- File-based JSON content under `content/`
-- TinaCMS for local content editing
-- Browser-side public endpoint reachability checks
-- Public AI Horde worker status from the AI Horde API
-- GitHub Pages deployment at `micksfoundry.org`
-
-The major routes are the dashboard, featured services, systems, portfolio, and about pages. A floating read-only console provides navigation and the same limited public status information.
-
-Public endpoint checks report only whether a route responds from the visitor's browser. They do not establish application or host health. Services without a suitable public check are labelled as not publicly probed.
+The site presents systems, automation, local-AI, governance, creative-production and infrastructure work with explicit status and public-evidence boundaries. It is built with Astro and targets GitHub Pages.
 
 ## Local development
 
-```bash
-cd ~/Projects/the-sanctum/project
+Requirements: Node.js 22.12 or later and npm 9.6.5 or later.
+
+```sh
 npm ci
 npm run dev
 ```
 
-The Vite development server is available at `http://localhost:5173` by default.
+The complete local acceptance sequence is:
 
-For the local Tina editor:
-
-```bash
-npm run admin:dev
+```sh
+npm run check
+npm run build
+npm run validate:site
 ```
 
-The editor manages:
+`npm run validate` runs those three gates in order. The static-output validator checks route generation, primary metadata, internal links, required public files, sitemap coverage, the custom domain and removal of obsolete live-status integrations.
 
-- Services in `content/services/*.json`
-- Projects in `content/projects/*.json`
-- About sections in `content/about/*.json`
+## Content
 
-Content is stored as ordinary JSON and committed with the source. Tina is a local editing workflow; there is no production content-editing backend.
+Case studies live in `src/content/work/`. Frontmatter is validated by `src/content.config.ts`, including status, type, verification date, public-safe areas, evidence links and the public boundary.
 
-## Checks and builds
+The public routes are:
 
-```bash
-# TypeScript project check
-npx tsc -b --pretty false
-
-# Lint maintained source and configuration
-npx eslint src tina/config.ts vite.config.ts
-
-# Production build used by GitHub Pages
-npm run build:pages
-
-# Preview an existing build
-npm run preview
+```text
+/
+├── work/
+│   ├── bots-5/
+│   ├── organisational-memory/
+│   ├── story-audio/
+│   ├── road-trip/
+│   └── homelab/
+├── lab/
+└── about/
 ```
 
-`build:pages` builds Tina's local assets, builds the Vite application, and removes `dist/admin` from the published output.
+## Public-safety boundary
+
+Public pages may explain engineering problems, architecture, constraints, process, evidence and public-safe outcomes. Do not add credentials, secrets, private Organisational Memory, unpublished production material, sensitive network topology or operational details that increase attack surface.
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/static.yml`. The workflow:
-
-1. Installs the locked dependencies with Node.js 20.
-2. Runs `npm run build:pages`.
-3. Copies `CNAME` and the SPA fallback into `dist/`.
-4. Publishes `dist/` through GitHub Pages.
-
-The custom domain is `micksfoundry.org`. Production does not publish the Tina admin.
-
-GitHub Pages serves the copied `404.html` for direct requests to client-side routes. This lets React Router load the requested page in a browser, although the initial HTTP response remains a 404.
-
-## Public information boundary
-
-This repository and its deployed site are public. Content should remain useful as a technical portfolio without becoming a copy of the private operations wiki.
-
-Do not add:
-
-- credentials, tokens, keys, passwords, or environment values;
-- private network or Tailscale addresses;
-- internal secret, backup, recovery, or data paths;
-- firewall weaknesses, recovery gaps, or detailed exposure topology;
-- private logs, shell history, or credential-handling details;
-- a complete inventory of private services merely because they exist.
-
-High-level hardware, operating systems, selected technologies, public routes, and intentionally public workload statistics are appropriate when current and useful.
-
-## License
-
-Personal project.
+`.github/workflows/deploy.yml` is the repository’s single GitHub Pages workflow. It validates and builds the Astro site before deploying the generated static artifact. Publication and GitHub Pages configuration remain separate operator decisions; local validation does not publish anything.
