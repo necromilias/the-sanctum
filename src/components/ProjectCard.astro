@@ -17,7 +17,7 @@ const verified = new Intl.DateTimeFormat('en-AU', {
 <article class="project-card">
   <div class="card-topline">
     <span class:list={['status', `status-${status}`]}>{status}</span>
-    <span class="verified">Verified {verified}</span>
+    <span class="verified">Checked {verified}</span>
   </div>
   <Heading><a href={`/work/${project.id}/`}>{title}</a></Heading>
   <p>{summary}</p>

@@ -27,6 +27,8 @@ npm run validate:site
 
 Case studies live in `src/content/work/`. Frontmatter is validated by `src/content.config.ts`, including status, type, verification date, public-safe areas, evidence links and the public boundary.
 
+`lastVerified` records when the public case study was checked against its applicable source record. It is not, by itself, a claim that the underlying system was operationally tested on that date.
+
 The public routes are:
 
 ```text

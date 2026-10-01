@@ -1,10 +1,10 @@
 ---
 title: B.O.T.S. 5
-summary: A custom AI campaign harness built around bounded workers, explicit contracts, durable evidence and human acceptance.
+summary: A local-first AI campaign harness and native Linux desktop built around bounded execution, explicit authority, durable evidence and human acceptance.
 status: implemented
-statusNote: Public main includes the accepted native Linux work through Phase 5. Later work is intentionally excluded.
+statusNote: Linux v0.1 is landed through Phase 10. Phase 11 product finishing and standalone packaging is next and remains unauthorized.
 type: AI systems and desktop tooling
-lastVerified: 2026-09-09
+lastVerified: 2026-10-01
 areas:
   - Python
   - Linux
@@ -15,11 +15,13 @@ featured: true
 order: 1
 repository: https://github.com/necromilias/bots-5
 evidence:
-  - label: Public Phase 5 commit
-    url: https://github.com/necromilias/bots-5/commit/c9efdb374e37be94bb9ab68abd45e8ed718c3437
-  - label: Phase 5 implementation report
-    url: https://github.com/necromilias/bots-5/blob/c9efdb374e37be94bb9ab68abd45e8ed718c3437/docs/LINUX_V0_1_PHASE5_IMPLEMENTATION_REPORT.md
-publicBoundary: This page stops at the public Phase 5 commit. Unreleased later-phase work, private campaign material and provider credentials are excluded.
+  - label: Phase 10 product commit
+    url: https://github.com/necromilias/bots-5/commit/9762170099889ecd87d451341a15a29ce7aceae8
+  - label: Phase 10 closure report
+    url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/docs/LINUX_V0_1_PHASE10_CLOSURE_REPORT.md
+  - label: CI v1 evidence record
+    url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/docs/CI_V1.md
+publicBoundary: This page follows the public implementation through Phase 10 and the later compatibility and CI work on main. Provider credentials, private operational context and unpublished material remain excluded.
 role: Mick identified the operating problems, set the constraints and acceptance boundaries, directed the implementation campaigns, and required independent evidence. AI tools performed substantial implementation and review work within those boundaries.
 ---
 
@@ -29,7 +31,7 @@ Ordinary model conversations are poor foundations for consequential project work
 
 ## The system Mick directed
 
-B.O.T.S. is a custom harness for coordinating AI workers. A worker receives an explicit contract, works within a defined repository and authority boundary, and leaves durable artifacts that can be checked after the conversation is over. The system is designed around a simple rule: model findings are evidence, not authority.
+B.O.T.S. began as a custom harness for coordinating bounded AI workers and grew into a native Linux desktop built around the same operating principles. Campaign workers receive explicit contracts, operate inside defined authority boundaries and leave durable artifacts that can be checked after the conversation is over. The desktop adds persistent application state and native workflows without promoting model output into authority.
 
 Mick framed the problems, designed the operating constraints, directed staged implementation campaigns and retained the final acceptance boundary. AI tooling was used heavily to implement, test and review the code; the site does not pretend otherwise.
 
@@ -39,29 +41,38 @@ Mick framed the problems, designed the operating constraints, directed staged im
 - Results need to survive beyond a chat transcript.
 - Candidate identity must be sealed before validation.
 - Tests and reports must be reproducible against the named candidate.
+- Technical completion, substantive acceptance, commit authority and later repository consequences remain separate states.
 - A worker must not be treated as the final judge of its own work.
 - Publication remains a separate human decision.
 
 ## What proved difficult
 
-The hard parts were not prompt decoration. They were lifecycle, persistence and concurrency behaviour: keeping repository state coherent, recording outcomes durably, managing cancellation and close paths, and making sure the desktop application reflected the same underlying authority as its storage layer.
+The hard parts were not prompt decoration. They were lifecycle, persistence and concurrency behaviour: keeping repository state coherent, controlling data-root effects, preserving SQLite durability, handling cancellation and close paths, evolving archive interchange without losing provenance, making backup and whole-installation restore recoverable, and exposing campaign execution through the desktop without weakening the headless authority model.
 
-Earlier wording in the public README trails the implementation history in places. This description therefore follows the landed Phase 5 code and acceptance report rather than repeating the older phase summary.
+Later compatibility work also found that a SQL expression accepted by newer SQLite builds could overflow the parser on SQLite 3.45.1. The repair was handled as a bounded compatibility defect rather than hidden behind a newer development environment.
 
 ## How failure was handled
 
-Work moved through narrow phases with explicit acceptance reports. Failed or blocked candidates were not silently promoted. Findings were turned into bounded repairs, then checked again against an exact repository state. Human review remained the final gate even when automated suites were green.
+Work moved through narrow phases with explicit acceptance records. Failed or blocked candidates were not silently promoted. Phase 10 itself had earlier candidates rejected by independent review, repaired inside the approved fence and resealed before the accepted candidate was validated. Findings became bounded repairs and regression tests rather than narrative exceptions.
+
+The same distinction applies after implementation: a green test suite is technical evidence, not automatic substantive acceptance, commit authority or publication authority.
 
 ## Implemented today
 
-At the public Phase 5 boundary, the repository contains the custom campaign harness and the landed native Linux application work. The public implementation includes durable local state, explicit lifecycle handling, worker and provider boundaries, and deterministic test coverage appropriate to the accepted phases.
+The public repository contains the original manifest-driven campaign harness and native Linux application work through Phase 10. The landed desktop includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
 
-The public record does **not** establish unreleased Phase 6 work, so this page makes no claim about it.
+Phase 10 adds attempt-addressed campaign evidence, explicit preflight and one-shot approval binding, truthful cancellation, selected-versus-cumulative cost accounting, worker regeneration, synthesis rerun with staleness classification, and matching headless CLI operations.
+
+Later `main` also contains the SQLite 3.45.1 compatibility repair and CI v1. Those changes do not imply that Phase 11 has begun.
 
 ## Validation evidence
 
-The Phase 5 acceptance record names the accepted commit and records a deterministic suite result of **344 passed, 1 skipped**. That is evidence for the bounded public candidate, not a claim that the system can never fail or that later work is complete.
+The accepted Phase 10 candidate recorded a complete-repository T4 result of **1504 passed, 1 skipped**, exit 0. Independent review completed its verification milestones with no candidate-changing defect; the final technical disposition was recorded as **PASS_WITH_LIMITATIONS**, and the accepted limitations remain documented rather than silently rewritten as resolved.
+
+CI v1 subsequently established a separate authoritative sharded T4 result against its exact candidate: **1597 passed, 0 failed, 0 errors, 1 permitted skip** across 1598 collected tests. That CI result belongs to the named CI candidate, not automatically to every later descendant of `main`.
 
 ## Current boundary
 
-Public Phase 5 is implemented and accepted locally in the project’s recorded process. Later work remains outside this case study. Provider secrets, private run artifacts and unpublished engineering findings are not reproduced here.
+Phase 10 is closed and landed. Phase 11 — product finishing and standalone packaging — is the next accepted sequence boundary and is not authorized by the current repository state. The final Phase 11 visual and aesthetic basis also remains a separate human decision.
+
+Provider secrets, private operational context and material that is not intentionally public are not reproduced here.

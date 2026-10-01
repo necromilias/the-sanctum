@@ -4,7 +4,7 @@ summary: A closed 30-part personal-edition prose work, with a separate audio ada
 status: closed
 statusNote: The 30-part prose edition is closed. Its downstream audio adaptation is separate and active.
 type: Long-form creative production
-lastVerified: 2026-09-09
+lastVerified: 2026-10-01
 areas:
   - long-form writing
   - editorial workflow

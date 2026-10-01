@@ -4,7 +4,7 @@ summary: A resumable local-AI production system for turning long-form writing in
 status: active
 statusNote: The production pipeline is active and incomplete; this is not presented as a finished audiobook system.
 type: Creative production system
-lastVerified: 2026-09-09
+lastVerified: 2026-10-01
 areas:
   - local AI
   - speech synthesis
