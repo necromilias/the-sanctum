@@ -14,7 +14,7 @@ areas:
 featured: true
 order: 2
 evidence:
-  - label: Public LLM governance reference
+  - label: Sanitized synthetic governance reference
     url: https://github.com/necromilias/llm-governance-reference/tree/439753a94d976ee277a9fafaf5a0c52d90a61ca6
 publicBoundary: This is an architectural account only. It does not reproduce private Organisational Memory records, internal paths, operator material or private repository content.
 role: Mick defined the authority model, information boundaries and operating procedures, directed implementation and evaluation, and retains authority over consequential decisions.
@@ -58,7 +58,7 @@ The repository system provides structured organisational knowledge, explicit aut
 
 OMC Stage 4 remains the implemented compiler baseline. It can deterministically retrieve bounded exact context from an explicit set of pinned repositories while remaining read-only and network-independent. Further retrieval evolution has accepted design work but remains intentionally unimplemented and parked pending a useful resumption condition.
 
-The private operational corpus is deliberately not published. The linked governance reference is the appropriate public account of the principles behind the work.
+The private operational corpus is deliberately not published. The linked governance reference is a sanitized, synthetic, non-authoritative architectural example of the principles behind the work. It is not independent proof of the private system’s current operational state.
 
 ## Validation evidence
 
@@ -66,6 +66,6 @@ Validation has included deterministic repository and compiler checks, black-box 
 
 ## Current boundary
 
-The core repository system and deterministic retrieval interface are implemented and in use. Full successor cutover is not implied, and retrieval remains downstream from the authority sources it reads.
+The core repository system is in use, and OMC Stage 4 provides an implemented deterministic retrieval interface. Full successor cutover is not implied, and retrieval remains downstream from the authority sources it reads.
 
 Private memory, internal operator procedures, source locations and unpublished project records remain outside the public boundary.
