@@ -14,6 +14,7 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
+const publicLinkCount = data.evidence.length + (data.repository ? 1 : 0);
 const verified = new Intl.DateTimeFormat('en-AU', {
   day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
 }).format(data.lastVerified);
@@ -43,7 +44,7 @@ const structuredData = {
       <dl class="project-meta">
         <div><dt>Status</dt><dd>{data.status}</dd></div>
         <div><dt>Checked</dt><dd>{verified}</dd></div>
-        <div><dt>Evidence</dt><dd>{data.evidence.length ? `${data.evidence.length} public link${data.evidence.length === 1 ? '' : 's'}` : 'Private / descriptive'}</dd></div>
+        <div><dt>Evidence</dt><dd>{publicLinkCount ? `${publicLinkCount} public link${publicLinkCount === 1 ? '' : 's'}` : 'Private / descriptive'}</dd></div>
         <div><dt>Type</dt><dd>{data.type}</dd></div>
       </dl>
     </div>
