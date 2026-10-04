@@ -2,9 +2,9 @@
 title: B.O.T.S. 5
 summary: A local-first AI campaign harness and native Linux desktop built around bounded execution, explicit authority, durable evidence and human acceptance.
 status: implemented
-statusNote: Public Linux v0.1 implementation is landed through Phase 10. Phase 11 product finishing and standalone packaging remains outside this public snapshot.
+statusNote: The public Phase 11 landing commit records substantive acceptance of the desktop finishing and standalone packaging candidate. No published release or broad Linux support guarantee is established here.
 type: AI systems and desktop tooling
-lastVerified: 2026-10-01
+lastVerified: 2026-10-04
 areas:
   - Python
   - Linux
@@ -15,6 +15,14 @@ featured: true
 order: 1
 repository: https://github.com/necromilias/bots-5
 evidence:
+  - label: Phase 11 candidate commit
+    url: https://github.com/necromilias/bots-5/commit/6a41939388944a450b0169e389901d54de72b02b
+  - label: Phase 11 implementation report and current addendum
+    url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/LINUX_V0_1_PHASE11_IMPLEMENTATION_REPORT.md
+  - label: Standalone Linux packaging and target limits
+    url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/STANDALONE_LINUX_PACKAGING.md
+  - label: Provider-managed context and Archive v3 contract
+    url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/PROVIDER_MANAGED_CONTEXT_ARCHIVE_V3.md
   - label: Phase 10 product commit
     url: https://github.com/necromilias/bots-5/commit/9762170099889ecd87d451341a15a29ce7aceae8
   - label: Phase 10 closure report
@@ -23,7 +31,7 @@ evidence:
     url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/work/campaign-evidence/phase10/campaign-desktop-integration/bots5-linux-v0.1-phase10-campaign-desktop-integration-20260929-01/outcome/FINAL_OUTCOME.json
   - label: CI v1 evidence record
     url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/docs/CI_V1.md
-publicBoundary: This page follows the public implementation through Phase 10 and the later compatibility and CI work on main. Provider credentials, private operational context and unpublished material remain excluded.
+publicBoundary: This page follows the accepted Phase 10 baseline and the Phase 11 landing record in public Git, distinguishing recorded acceptance and candidate validation from release and platform support. Provider credentials, private operational context and unpublished material remain excluded.
 role: Mick identified the operating problems, set the constraints and acceptance boundaries, directed the implementation campaigns, and required independent evidence. AI tools performed substantial implementation and review work within those boundaries.
 ---
 
@@ -63,11 +71,13 @@ The same distinction applies after implementation: a green test suite is technic
 
 ## Implemented today
 
-The public repository contains the original manifest-driven campaign harness and native Linux application work through Phase 10. The landed desktop includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
+The public repository contains the original manifest-driven campaign harness, the accepted native Linux application baseline through Phase 10, and a later Phase 11 desktop finishing and packaging candidate. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
 
 Phase 10 adds attempt-addressed campaign evidence, explicit preflight and one-shot approval binding, truthful cancellation, selected-versus-cumulative cost accounting, worker regeneration, synthesis rerun with staleness classification, and matching headless CLI operations.
 
-Later `main` also contains the SQLite 3.45.1 compatibility repair and CI v1. Those changes do not imply that Phase 11 has begun.
+Later `main` contains the SQLite 3.45.1 compatibility repair and CI v1, followed by the Phase 11 candidate. The candidate adds command-palette and keyboard workflows, richer message rendering, folders, pins and deletion, workspace restoration, model-selector and desktop presentation work, and a standalone Linux build path for the CLI and desktop.
+
+Public `main` also adds provider-managed OpenRouter context and Archive v3 preservation. This mode uses deterministic local selection with a heuristic context estimate and provider final admission; it does not promise exact token accounting or guaranteed fit. Existing exact-accounting adapters retain their separate contract.
 
 ## Validation evidence
 
@@ -77,8 +87,14 @@ The Phase 10 review and validation used deterministic fake providers and offscre
 
 CI v1 subsequently established a separate authoritative sharded T4 result against candidate [`58fca2c7`](https://github.com/necromilias/bots-5/commit/58fca2c7b1b4111d982733980c303565bf91695e), in [run `36682157600`](https://github.com/necromilias/bots-5/actions/runs/36682157600): **1597 passed, 0 failed, 0 errors, 1 permitted skip** across 1598 collected tests. The workflow is dispatch-only. That CI result belongs to this exact candidate, not automatically to every later descendant of `main`.
 
+The Phase 11 report’s 4 October addendum records substantive acceptance of the M7 standalone packaging milestone while retaining target and diagnostic limits. Packaging validation is separate from T4 and uses offscreen desktop checks. Its evidence applies to the validated build host, without a general Linux-distribution compatibility guarantee.
+
+The later Phase 11 landing commit records substantive acceptance and a final sealed-candidate T4 result of **2118 passed, 1 approved opt-in skip, 0 failures/errors**. This is the commit’s reported candidate result; its retained campaign evidence is outside the product commit, and no new public GitHub Actions run is linked for it. Earlier test counts remain attached to their earlier candidates.
+
 ## Current boundary
 
-Phase 10 is closed and landed in public Git. The public repository describes Phase 11 — product finishing and standalone packaging — as the next sequence boundary and grants no authority to begin it. Later authority decisions are not established by this public snapshot. The final Phase 11 visual and aesthetic basis is recorded there as a separate human decision.
+Phase 10 is closed and landed. The Phase 11 landing commit records a substantively accepted candidate; the implementation report’s addendum describes the earlier pre-final boundary. No published release is established here. AppImage remains conditional; Flatpak and Snap are outside the documented packaging path.
+
+The current addendum supersedes the report’s older milestone snapshots. It carries an unsupported historical migration downgrade that leaves partial database changes; supported recovery restores attributable prior source or a verified pre-upgrade backup and migrates forward. It also retains unresolved provider-stream cleanup diagnostics: functional persistence and archive evidence do not establish clean shutdown or absence of resource leaks.
 
 Provider secrets, private operational context and material that is not intentionally public are not reproduced here.
