@@ -2,9 +2,9 @@
 title: B.O.T.S. 5
 summary: A local-first AI campaign harness and native Linux desktop built around bounded execution, explicit authority, durable evidence and human acceptance.
 status: implemented
-statusNote: The public Phase 11 landing commit records substantive acceptance of the desktop finishing and standalone packaging candidate. No published release or broad Linux support guarantee is established here.
+statusNote: Phase 11 product finishing and standalone packaging is closed, substantively accepted and landed, including the provider-stream cleanup repair. The standalone remains unpublished; no broad Linux support guarantee is established.
 type: AI systems and desktop tooling
-lastVerified: 2026-10-04
+lastVerified: 2026-10-05
 areas:
   - Python
   - Linux
@@ -15,9 +15,13 @@ featured: true
 order: 1
 repository: https://github.com/necromilias/bots-5
 evidence:
-  - label: Phase 11 candidate commit
-    url: https://github.com/necromilias/bots-5/commit/6a41939388944a450b0169e389901d54de72b02b
-  - label: Phase 11 implementation report and current addendum
+  - label: Phase 11 final product commit
+    url: https://github.com/necromilias/bots-5/commit/59265916abeb2e9f6cbf953726f22a9f7c00f3b5
+  - label: Phase 11 accepted closure and validation record
+    url: https://github.com/necromilias/bots-5/blob/7446e5c3a85d4043bf387784568458a6d270ff49/docs/LINUX_V0_1_PHASE11_CLOSURE_REPORT.md
+  - label: Final Phase 11 authority and effect supplement
+    url: https://github.com/necromilias/bots-5/blob/7446e5c3a85d4043bf387784568458a6d270ff49/docs/UNIFIED_AUTHORITY_EFFECT_INVENTORY_PHASE11_FINAL_SUPPLEMENT.md
+  - label: Phase 11 implementation report and historical checkpoints
     url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/LINUX_V0_1_PHASE11_IMPLEMENTATION_REPORT.md
   - label: Standalone Linux packaging and target limits
     url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/STANDALONE_LINUX_PACKAGING.md
@@ -71,11 +75,11 @@ The same distinction applies after implementation: a green test suite is technic
 
 ## Implemented today
 
-The public repository contains the original manifest-driven campaign harness, the accepted native Linux application baseline through Phase 10, and a later Phase 11 desktop finishing and packaging candidate. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
+The public repository contains the original manifest-driven campaign harness, the accepted native Linux application baseline through Phase 10, and the accepted Phase 11 desktop finishing and packaging work. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
 
 Phase 10 adds attempt-addressed campaign evidence, explicit preflight and one-shot approval binding, truthful cancellation, selected-versus-cumulative cost accounting, worker regeneration, synthesis rerun with staleness classification, and matching headless CLI operations.
 
-Later `main` contains the SQLite 3.45.1 compatibility repair and CI v1, followed by the Phase 11 candidate. The candidate adds command-palette and keyboard workflows, richer message rendering, folders, pins and deletion, workspace restoration, model-selector and desktop presentation work, and a standalone Linux build path for the CLI and desktop.
+Later `main` contains the SQLite 3.45.1 compatibility repair and CI v1, followed by Phase 11. Phase 11 adds command-palette and keyboard workflows, richer message rendering, folders, pins and deletion, workspace restoration, model-selector and desktop presentation work, and a standalone Linux build path for the CLI and desktop. Its final repair makes provider/backend/router stream ownership explicit and drains owned cleanup before application resources are released, preserving valid terminal completion without consuming irrelevant response tails.
 
 Public `main` also adds provider-managed OpenRouter context and Archive v3 preservation. This mode uses deterministic local selection with a heuristic context estimate and provider final admission; it does not promise exact token accounting or guaranteed fit. Existing exact-accounting adapters retain their separate contract.
 
@@ -87,14 +91,16 @@ The Phase 10 review and validation used deterministic fake providers and offscre
 
 CI v1 subsequently established a separate authoritative sharded T4 result against candidate [`58fca2c7`](https://github.com/necromilias/bots-5/commit/58fca2c7b1b4111d982733980c303565bf91695e), in [run `36682157600`](https://github.com/necromilias/bots-5/actions/runs/36682157600): **1597 passed, 0 failed, 0 errors, 1 permitted skip** across 1598 collected tests. The workflow is dispatch-only. That CI result belongs to this exact candidate, not automatically to every later descendant of `main`.
 
-The Phase 11 report’s 4 October addendum records substantive acceptance of the M7 standalone packaging milestone while retaining target and diagnostic limits. Packaging validation is separate from T4 and uses offscreen desktop checks. Its evidence applies to the validated build host, without a general Linux-distribution compatibility guarantee.
+The 5 October Phase 11 closure record reports final source T4 of **2189 passed, 1 permitted opt-in skip, 0 failures/errors**, **71/71 frozen provider-cleanup cases passed**, and **156/156 M7 package checks passed**, with no skips or unexecuted cases in those two package gates. These results belong to the retained final source and rebuilt standalone, not to later documentation bytes. Packaging validation is separate from T4 and uses offscreen desktop checks; its evidence is confined to the validated target, without a general Linux-distribution compatibility guarantee.
 
-The later Phase 11 landing commit records substantive acceptance and a final sealed-candidate T4 result of **2118 passed, 1 approved opt-in skip, 0 failures/errors**. This is the commit’s reported candidate result; its retained campaign evidence is outside the product commit, and no new public GitHub Actions run is linked for it. Earlier test counts remain attached to their earlier candidates.
+The public closure record distinguishes technical completion, subsequent human acceptance, commit authority and landing. Raw campaign evidence and the standalone remain outside the public product commit; no new public GitHub Actions run is linked for this final candidate. Earlier reports and test counts retain their historical subjects.
 
 ## Current boundary
 
-Phase 10 is closed and landed. The Phase 11 landing commit records a substantively accepted candidate; the implementation report’s addendum describes the earlier pre-final boundary. No published release is established here. AppImage remains conditional; Flatpak and Snap are outside the documented packaging path.
+Phase 11 is closed, substantively accepted and landed at the final corrective source commit. The validated standalone was not uploaded, and no public release or product deployment occurred. Phase 12 — the Linux v0.1 torture run and separate closure adjudication — is next in the recorded sequence; the closure record does not authorize its design or execution. AppImage remains conditional/deferred; Flatpak and Snap are outside the documented packaging path.
 
-The current addendum supersedes the report’s older milestone snapshots. It carries an unsupported historical migration downgrade that leaves partial database changes; supported recovery restores attributable prior source or a verified pre-upgrade backup and migrates forward. It also retains unresolved provider-stream cleanup diagnostics: functional persistence and archive evidence do not establish clean shutdown or absence of resource leaks.
+The final closure supersedes the earlier unresolved provider-stream cleanup status for the corrected subject. Its finite ownership proof is not a global leak-free guarantee. The record retains **807 pytest warnings**, including resource warnings, alongside observed pending restore-task diagnostics. Their allocation/ownership origins and individual harmlessness findings remain unestablished. Real credential-service operations remain unverified, and the Python/Nuitka toolchain retains its experimental qualification.
+
+The unsupported historical migration downgrade remains accepted/carried and leaves partial database changes. Supported recovery restores attributable prior source or a verified pre-upgrade backup and migrates forward; no successful historical reversal is claimed.
 
 Provider secrets, private operational context and material that is not intentionally public are not reproduced here.
