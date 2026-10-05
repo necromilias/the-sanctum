@@ -15,6 +15,7 @@ const expectedFiles = [
   'work/homelab/index.html',
   'lab/index.html',
   'about/index.html',
+  'writing/index.html',
   '404.html',
   'robots.txt',
   'sitemap.xml',
@@ -29,7 +30,9 @@ const excludedRoutes = [
   { route: '/portfolio/', outputs: ['portfolio/index.html', 'portfolio.html'] },
 ];
 
-const primaryPages = expectedFiles.filter((file) => file.endsWith('.html') && file !== '404.html');
+const primaryPages = filesUnder(dist)
+  .filter((file) => file.endsWith('.html') && relative(dist, file) !== '404.html')
+  .map((file) => relative(dist, file));
 const requiredMetadata = [
   /<title>[^<]+<\/title>/i,
   /<meta name="description" content="[^"]+"/i,
@@ -104,12 +107,14 @@ if (existsSync(join(dist, 'robots.txt'))) {
 
 if (existsSync(join(dist, 'sitemap.xml'))) {
   const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8');
-  const expectedUrls = [
-    '/', '/work/', '/work/bots-5/', '/work/organisational-memory/',
-    '/work/story-audio/', '/work/road-trip/', '/work/homelab/', '/lab/', '/about/',
-  ].map((path) => `https://micksfoundry.org${path}`);
-  for (const url of expectedUrls) {
-    if (!sitemap.includes(`<loc>${url}</loc>`)) errors.push(`Sitemap missing ${url}`);
+  for (const file of primaryPages) {
+    const html = readFileSync(join(dist, file), 'utf8');
+    const url = html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
+    if (!url) continue;
+    const noindex = /<meta name="robots" content="[^"]*noindex/i.test(html);
+    const listed = sitemap.includes(`<loc>${url}</loc>`);
+    if (!noindex && !listed) errors.push(`Sitemap missing ${url}`);
+    if (noindex && listed) errors.push(`Sitemap includes noindex page ${url}`);
   }
 }
 

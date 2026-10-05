@@ -29,6 +29,11 @@ Case studies live in `src/content/work/`. Frontmatter is validated by `src/conte
 
 `lastVerified` records when the public case study was checked against its applicable source record. It is not, by itself, a claim that the underlying system was operationally tested on that date.
 
+Writing lives in `src/content/writing/` with a reusable post layout and stable
+slug metadata. See [Writing maintenance](docs/WRITING.md) for faithful text
+handling, draft previews, dates and explicit publication approval. Drafts,
+including the layout sample, are excluded from ordinary builds.
+
 The public routes are:
 
 ```text
@@ -40,7 +45,8 @@ The public routes are:
 │   ├── road-trip/
 │   └── homelab/
 ├── lab/
-└── about/
+├── about/
+└── writing/ (approved pieces only in ordinary builds)
 ```
 
 ## Public-safety boundary

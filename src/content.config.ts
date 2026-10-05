@@ -24,4 +24,26 @@ const work = defineCollection({
   }),
 });
 
-export const collections = { work };
+// YAML may parse an unquoted calendar date into a Date object.
+const writingDate = z.preprocess(
+  (value) => value instanceof Date ? value.toISOString().slice(0, 10) : value,
+  z.iso.date(),
+);
+
+const writing = defineCollection({
+  loader: glob({ base: './src/content/writing', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string().trim().min(1),
+    description: z.string().trim().min(1),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    publishedDate: writingDate,
+    updatedDate: writingDate.optional(),
+    tags: z.array(z.string().trim().min(1)).default([]),
+    draft: z.boolean().default(true),
+  }).refine((data) => !data.updatedDate || data.updatedDate >= data.publishedDate, {
+    message: 'updatedDate must not precede publishedDate',
+    path: ['updatedDate'],
+  }),
+});
+
+export const collections = { work, writing };

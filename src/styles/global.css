@@ -364,6 +364,46 @@ h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
 .site-footer p { margin: 0; }
 .site-footer span { color: var(--muted); }
 
+/* Writing shares the Foundry palette with a quieter, single-column rhythm. */
+.writing-shell { max-width: 48rem; }
+.writing-head { padding-block: clamp(3rem, 6vw, 5rem); }
+.writing-head h1 { max-width: 18ch; font-size: clamp(2.75rem, 5vw, 4.5rem); }
+.writing-head .eyebrow { color: var(--copper-soft); }
+.writing-head .lead { max-width: 40rem; }
+.writing-back { color: var(--muted); font-size: .9rem; text-underline-offset: .25em; }
+.writing-back + .eyebrow { margin-top: 2rem; }
+.writing-section { padding-block: clamp(2.5rem, 5vw, 4rem); }
+.writing-date { color: var(--muted); font-size: .88rem; margin: 1.6rem 0 0; }
+.writing-date-divider { margin-inline: .4rem; }
+.writing-tags { margin: .9rem 0 0; padding: 0; }
+.writing-preview {
+  margin: 0 0 2.5rem;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--copper);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: .92rem;
+}
+.writing-preview strong { color: var(--copper-soft); }
+.writing-list { list-style: none; margin: 0; padding: 0; }
+.writing-list > li { border-bottom: 1px solid var(--line); padding-bottom: 2.5rem; }
+.writing-list > li + li { padding-top: 2.5rem; }
+.writing-entry .writing-date { margin-top: 0; }
+.writing-entry h2 { margin: .8rem 0 1rem; font-size: clamp(1.8rem, 3vw, 2.4rem); }
+.writing-entry h2 a { text-decoration: none; }
+.writing-entry > p:not(.writing-date), .writing-empty { color: var(--muted); }
+.writing-entry .writing-tags { margin-bottom: 1.5rem; }
+.writing-prose { max-width: 100%; font-size: 1.125rem; line-height: 1.85; overflow-wrap: anywhere; }
+.writing-prose > :first-child { margin-top: 0; }
+.writing-prose p { margin-block: 1.25rem; }
+.writing-prose h2 { margin-top: 2.75rem; }
+.writing-prose :is(h2, h3) { line-height: 1.25; text-wrap: pretty; }
+.writing-prose a { color: var(--copper-soft); text-underline-offset: .2em; }
+.writing-prose blockquote { margin-inline: 0; padding-left: 1.25rem; border-left: 2px solid var(--copper); }
+.writing-prose pre { overflow-x: auto; padding: 1rem; background: var(--surface); }
+.writing-prose pre code { padding: 0; border: 0; }
+.writing-end { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1.5rem; }
+
 @media (max-width: 850px) {
   .header-inner { min-height: auto; padding-block: 1.25rem; align-items: flex-start; }
   nav ul { justify-content: flex-end; flex-wrap: wrap; }
@@ -386,6 +426,8 @@ h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
   .split { grid-template-columns: 1fr; }
   .project-meta { grid-template-columns: 1fr 1fr; }
   .footer-grid { display: grid; gap: .6rem; }
+  .writing-prose { font-size: 1.0625rem; line-height: 1.8; }
+  .writing-head h1 { font-size: clamp(2.5rem, 11vw, 3.5rem); }
 }
 
 @media (max-width: 360px) {

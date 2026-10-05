@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatWritingDate, getWritingPosts, writingPreview } from '../../lib/writing';
+
+const posts = await getWritingPosts();
+const description = 'A place for longer pieces, notes and reflections at Mick’s Foundry.';
+---
+
+<BaseLayout title="Writing" {description} canonicalPath="/writing/" noindex={writingPreview}>
+  <header class="page-head writing-head">
+    <div class="shell writing-shell">
+      <p class="eyebrow">Writing</p>
+      <h1>Room for the words.</h1>
+      <p class="lead">Longer pieces, notes and reflections.</p>
+    </div>
+  </header>
+  <section class="section writing-section" aria-label="Writing archive">
+    <div class="shell writing-shell">
+      {writingPreview && (
+        <p class="writing-preview"><strong>Local review preview.</strong> Drafts are visible here. The sample demonstrates the layout; it is not an essay written or approved by Mick.</p>
+      )}
+      {posts.length ? (
+        <ul class="writing-list">
+          {posts.map(({ data }) => (
+            <li>
+              <article class="writing-entry">
+                <p class="writing-date">
+                  {data.draft ? 'Draft · example date: ' : ''}<time datetime={data.publishedDate}>{formatWritingDate(data.publishedDate)}</time>
+                </p>
+                <h2><a href={`/writing/${data.slug}/`}>{data.title}</a></h2>
+                <p>{data.description}</p>
+                {data.tags.length > 0 && <ul class="tag-list writing-tags" aria-label="Tags">{data.tags.map((tag) => <li>{tag}</li>)}</ul>}
+                <a class="text-link" href={`/writing/${data.slug}/`}>{data.draft ? 'View draft' : 'Read piece'} <span aria-hidden="true">→</span></a>
+              </article>
+            </li>
+          ))}
+        </ul>
+      ) : <p class="writing-empty">Writing is taking shape. New pieces will appear here when ready.</p>}
+    </div>
+  </section>
+</BaseLayout>

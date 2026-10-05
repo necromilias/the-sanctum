@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { formatWritingDate } from '../lib/writing';
+
+interface Props { post: CollectionEntry<'writing'>; }
+const { data } = Astro.props.post;
+const canonicalPath = `/writing/${data.slug}/`;
+const structuredData = data.draft ? undefined : {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: data.title,
+  description: data.description,
+  datePublished: data.publishedDate,
+  ...(data.updatedDate ? { dateModified: data.updatedDate } : {}),
+  ...(data.tags.length ? { keywords: data.tags.join(', ') } : {}),
+  url: new URL(canonicalPath, Astro.site).href,
+};
+---
+
+<BaseLayout title={data.title} description={data.description} {canonicalPath} type="article" {structuredData} noindex={data.draft}>
+  <article class="writing-post">
+    <header class="page-head writing-head">
+      <div class="shell writing-shell">
+        <a class="writing-back" href="/writing/">← All writing</a>
+        <p class="eyebrow">{data.draft ? 'Draft / layout review' : 'Writing'}</p>
+        <h1>{data.title}</h1>
+        <p class="lead">{data.description}</p>
+        <p class="writing-date">
+          {data.draft ? 'Example publication date: ' : 'Published '}
+          <time datetime={data.publishedDate}>{formatWritingDate(data.publishedDate)}</time>
+          {data.updatedDate && <><span class="writing-date-divider" aria-hidden="true"> · </span>{data.draft ? 'Example update: ' : 'Updated '}<time datetime={data.updatedDate}>{formatWritingDate(data.updatedDate)}</time></>}
+        </p>
+        {data.tags.length > 0 && <ul class="tag-list writing-tags" aria-label="Tags">{data.tags.map((tag) => <li>{tag}</li>)}</ul>}
+      </div>
+    </header>
+    <div class="section writing-section">
+      <div class="shell writing-shell">
+        {data.draft && <p class="writing-preview"><strong>Draft preview — not published.</strong> This content is awaiting review. Dates shown above are examples until publication is approved.</p>}
+        <div class="prose writing-prose"><slot /></div>
+        <footer class="writing-end"><a class="text-link" href="/writing/">Back to all writing <span aria-hidden="true">→</span></a></footer>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
