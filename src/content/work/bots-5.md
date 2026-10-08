@@ -2,9 +2,9 @@
 title: B.O.T.S. 5
 summary: A local-first AI campaign harness and native Linux desktop built around bounded execution, explicit authority, durable evidence and human acceptance.
 status: implemented
-statusNote: Phase 11 is closed, substantively accepted and landed. Phase 12 wave 2 repairs and tests have landed, without a public overall closure record. The standalone remains unpublished and requires an ASCII-only executable path; no broad Linux support guarantee is established.
+statusNote: Linux v0.1 is closed and accepted with limitations for Mick's current use. A later Unicode-path packaging repair and application icon implementation have landed. The standalone remains unpublished; broader Linux compatibility and installed launcher matching remain unqualified.
 type: AI systems and desktop tooling
-lastVerified: 2026-10-06
+lastVerified: 2026-10-08
 areas:
   - Python
   - Linux
@@ -15,10 +15,16 @@ featured: true
 order: 1
 repository: https://github.com/necromilias/bots-5
 evidence:
+  - label: Phase 12 and Linux v0.1 accepted closure record
+    url: https://github.com/necromilias/bots-5/blob/7db9c2d357902a1f554b211af885af9c31eac4c6/docs/LINUX_V0_1_PHASE12_CLOSURE_REPORT.md
   - label: Phase 12 wave 2 repairs and reported validation
     url: https://github.com/necromilias/bots-5/commit/ba72d16aa3540218cb70e377fa9f452252b7c360
-  - label: Known standalone executable-path limitation
-    url: https://github.com/necromilias/bots-5/blob/ba72d16aa3540218cb70e377fa9f452252b7c360/README.md#known-standalone-limitation
+  - label: Unicode-path packaging repair and scoped validation
+    url: https://github.com/necromilias/bots-5/commit/7c0f74d6b886d9b30c22e8772948a6f6ca8a282a
+  - label: Accepted artifact limitation and rebuilt candidate distinction
+    url: https://github.com/necromilias/bots-5/blob/7c0f74d6b886d9b30c22e8772948a6f6ca8a282a/README.md#standalone-unicode-installation-paths
+  - label: Application icon implementation and installation boundary
+    url: https://github.com/necromilias/bots-5/blob/db82e0b34bf83ea9d0e306f90e8699d3e16e135b/docs/APPLICATION_ICON.md
   - label: Phase 11 final product commit
     url: https://github.com/necromilias/bots-5/commit/59265916abeb2e9f6cbf953726f22a9f7c00f3b5
   - label: Phase 11 accepted closure and validation record
@@ -28,7 +34,7 @@ evidence:
   - label: Phase 11 implementation report and historical checkpoints
     url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/LINUX_V0_1_PHASE11_IMPLEMENTATION_REPORT.md
   - label: Standalone Linux packaging and target limits
-    url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/STANDALONE_LINUX_PACKAGING.md
+    url: https://github.com/necromilias/bots-5/blob/7c0f74d6b886d9b30c22e8772948a6f6ca8a282a/docs/STANDALONE_LINUX_PACKAGING.md
   - label: Provider-managed context and Archive v3 contract
     url: https://github.com/necromilias/bots-5/blob/6a41939388944a450b0169e389901d54de72b02b/docs/PROVIDER_MANAGED_CONTEXT_ARCHIVE_V3.md
   - label: Phase 10 product commit
@@ -39,7 +45,7 @@ evidence:
     url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/work/campaign-evidence/phase10/campaign-desktop-integration/bots5-linux-v0.1-phase10-campaign-desktop-integration-20260929-01/outcome/FINAL_OUTCOME.json
   - label: CI v1 evidence record
     url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/docs/CI_V1.md
-publicBoundary: This page follows the accepted Phase 10 and Phase 11 records and the subsequent Phase 12 wave 2 commit in public Git, distinguishing recorded acceptance and reported candidate validation from release and platform support. Provider credentials, private operational context and unpublished material remain excluded.
+publicBoundary: This page follows the accepted Linux v0.1 closure records and subsequent packaging and icon work in public Git, distinguishing recorded acceptance and reported candidate validation from release and platform support. Provider credentials, private operational context and unpublished material remain excluded.
 role: Mick identified the operating problems, set the constraints and acceptance boundaries, directed the implementation campaigns, and required independent evidence. AI tools performed substantial implementation and review work within those boundaries.
 ---
 
@@ -79,7 +85,7 @@ The same distinction applies after implementation: a green test suite is technic
 
 ## Implemented today
 
-The public repository contains the original manifest-driven campaign harness, the accepted native Linux application baseline through Phase 10, and the accepted Phase 11 desktop finishing and packaging work. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
+The public repository contains the original manifest-driven campaign harness and the native Linux v0.1 application, closed and accepted with limitations through Phase 12. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
 
 Phase 10 adds attempt-addressed campaign evidence, explicit preflight and one-shot approval binding, truthful cancellation, selected-versus-cumulative cost accounting, worker regeneration, synthesis rerun with staleness classification, and matching headless CLI operations.
 
@@ -88,6 +94,8 @@ Later `main` contains the SQLite 3.45.1 compatibility repair and CI v1, followed
 Public `main` also adds provider-managed OpenRouter context and Archive v3 preservation. This mode uses deterministic local selection with a heuristic context estimate and provider final admission; it does not promise exact token accounting or guaranteed fit. Existing exact-accounting adapters retain their separate contract.
 
 The subsequent Phase 12 wave 2 commit aligns provider failure reporting with the canonical remote-outcome classification and connects caller-supplied completion deadlines to HTTP transport timeouts. It adds regression coverage and loopback TCP tests for malformed streams, failures before terminal completion, trailing garbage, cancellation, timeout settlement and resource ownership, alongside backup/restore crash tests.
+
+Later packaging work pins Nuitka 4.2, freezes Python UTF-8 mode and normalizes filesystem-byte arguments in generated entrypoints. Application icon work embeds size-specific SVG badges in Qt and supplies desktop-entry and hicolor resources for wheels and standalone bundles. It sets application/window icons and a shared launcher identity; it does not install shortcuts or change desktop settings.
 
 ## Validation evidence
 
@@ -101,15 +109,19 @@ The 5 October Phase 11 closure record reports final source T4 of **2189 passed, 
 
 The public closure record distinguishes technical completion, subsequent human acceptance, commit authority and landing. Raw campaign evidence and the standalone remain outside the public product commit; no new public GitHub Actions run is linked for this final candidate. Earlier reports and test counts retain their historical subjects.
 
-The Phase 12 wave 2 commit message separately reports **2240 passed, 1 permitted skip, 0 failures/errors** for its retained source candidate and **19/19 frozen obligations passed** for a rebuilt standalone. These are attributed results from the public commit record; the retained run artifacts and executable are not in the public tree, and the latest public GitHub Actions T4 run still concerns the earlier CI v1 candidate. This site audit inspected public source and tests but did not independently rerun the B.O.T.S. suite or verify the standalone.
+The Phase 12 closure record retains **2240 passed, 1 permitted skip, 0 failures/errors** for its source candidate and **19/19 frozen obligations passed** for a rebuilt standalone. It records Mick's acceptance as **PASS_WITH_LIMITATIONS** on 6 October UTC. These are retained campaign results, not checks rerun for the documentation closeout; the public record does not establish independent byte-level verification of local seals or manifests. The retained run artifacts and executable are not in the public tree, and the latest public GitHub Actions T4 run still concerns the earlier CI v1 candidate.
+
+The later Unicode-path repair commit separately reports **164 mandatory checks passed**, **19 retained frozen cases passed**, two loopback stalled-provider deadline trials passed, and **363/363 final artifact files verified unchanged**. Its qualification is Forge with offscreen Qt, covering ASCII, accented and CJK/home-like paths, renamed Unicode executables, plain `C` locale startup and restore re-entry. It is not full T4, real-compositor, general Linux or arbitrary non-UTF-8 filename-byte qualification. Those results predate the subsequent icon commit and do not automatically validate its descendant. The icon implementation includes resource-rendering and launcher-identity tests, but no new public result is supplied. This site audit inspected public source and tests without independently rerunning B.O.T.S. or verifying its standalone.
 
 ## Current boundary
 
-Phase 11 is closed, substantively accepted and landed at the final corrective source commit. Phase 12 now has landed wave 2 repairs and tests; no public overall Phase 12 closure or acceptance record was found. The standalone remains unpublished, with no public release or product deployment established. AppImage remains conditional/deferred; Flatpak and Snap are outside the documented packaging path.
+The public closure record reports Phase 12 closed and accepted with limitations, making Linux v0.1 complete for Mick's current use. Deferred post-v0.1 work retains its separate authority boundary. The standalone remains local and unpublished, with no public release or product deployment established. AppImage remains conditional/deferred; Flatpak and Snap are outside the documented packaging path.
 
-The current README documents a standalone startup abort if any component of the full path to either `bots5` or `bots5-desktop` contains non-ASCII characters, including ancestor directories. Source installation is unaffected. An ASCII-only installation path is required; broader path compatibility needs separate toolchain qualification. The public record accepts this limitation for Mick's current use and explicitly rejects treating it as an undocumented general Linux release property.
+The accepted v0.1.0 artifact built with Nuitka 4.1.1 retains DEP-01: non-ASCII executable-path components can abort `bots5` or `bots5-desktop` at startup. That artifact still requires an ASCII-only installation path; source installation is unaffected. The later rebuilt candidate reports scoped Unicode-path qualification and does not replace the accepted artifact or establish broader distribution compatibility. The historical closure's DEP-01 wording remains applicable to its accepted artifact, rather than describing every later build recipe.
 
-The final closure supersedes the earlier unresolved provider-stream cleanup status for the corrected subject. Its finite ownership proof is not a global leak-free guarantee. The record retains **807 pytest warnings**, including resource warnings, alongside observed pending restore-task diagnostics. Their allocation/ownership origins and individual harmlessness findings remain unestablished. Real credential-service operations remain unverified, and the Python/Nuitka toolchain retains its experimental qualification.
+The icon resources are landed implementation, not proof of an installed desktop integration. The supplied desktop entry expects `bots5-desktop` on PATH. Installing launcher resources and checking actual pinned-launcher matching in a KDE session remain separate steps; no such installation or session verification is claimed here.
+
+The Phase 11 closure supersedes the earlier unresolved provider-stream cleanup status for the corrected subject. Its finite ownership proof is not a global leak-free guarantee. That record retains **807 pytest warnings**, including resource warnings, alongside observed pending restore-task diagnostics. Their allocation/ownership origins and individual harmlessness findings remain unestablished. Real credential-service operations remain unverified, and the Python/Nuitka toolchain retains its experimental qualification.
 
 The unsupported historical migration downgrade remains accepted/carried and leaves partial database changes. Supported recovery restores attributable prior source or a verified pre-upgrade backup and migrates forward; no successful historical reversal is claimed.
 
