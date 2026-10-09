@@ -2,9 +2,9 @@
 title: B.O.T.S. 5
 summary: A local-first AI campaign harness and native Linux desktop built around bounded execution, explicit authority, durable evidence and human acceptance.
 status: implemented
-statusNote: Linux v0.1 is closed and accepted with limitations for Mick's current use. A later Unicode-path packaging repair and application icon implementation have landed. The standalone remains unpublished; broader Linux compatibility and installed launcher matching remain unqualified.
+statusNote: Linux V0.2 is accepted for Mick's current use, with source published and tagged v0.2.0. Its control plane adds explicit capabilities, tools, execution, receipts and plugins. Plugins remain trusted in-process code; broader Linux compatibility and installed launcher matching remain unqualified.
 type: AI systems and desktop tooling
-lastVerified: 2026-10-08
+lastVerified: 2026-10-09
 areas:
   - Python
   - Linux
@@ -15,6 +15,12 @@ featured: true
 order: 1
 repository: https://github.com/necromilias/bots-5
 evidence:
+  - label: Linux V0.2 accepted closure and retained limitations
+    url: https://github.com/necromilias/bots-5/blob/75b20a6a0ef1d3124c3be286afd69efe5b320eb6/docs/LINUX_V0_2_CLOSURE_REPORT.md
+  - label: Published v0.2.0 source and producer version record
+    url: https://github.com/necromilias/bots-5/commit/0fffe8941647fac68e4fbde4deb736e9f53beb33
+  - label: V0.2 capability contract and threat model
+    url: https://github.com/necromilias/bots-5/blob/08fcd9c56898fa69f5d5a3c9700e52f66eed90e1/docs/CAPABILITY_SEAM_V0_2.md
   - label: Phase 12 and Linux v0.1 accepted closure record
     url: https://github.com/necromilias/bots-5/blob/7db9c2d357902a1f554b211af885af9c31eac4c6/docs/LINUX_V0_1_PHASE12_CLOSURE_REPORT.md
   - label: Phase 12 wave 2 repairs and reported validation
@@ -45,7 +51,7 @@ evidence:
     url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/work/campaign-evidence/phase10/campaign-desktop-integration/bots5-linux-v0.1-phase10-campaign-desktop-integration-20260929-01/outcome/FINAL_OUTCOME.json
   - label: CI v1 evidence record
     url: https://github.com/necromilias/bots-5/blob/088bdaf7c614e450ae85d784493766677e4787e0/docs/CI_V1.md
-publicBoundary: This page follows the accepted Linux v0.1 closure records and subsequent packaging and icon work in public Git, distinguishing recorded acceptance and reported candidate validation from release and platform support. Provider credentials, private operational context and unpublished material remain excluded.
+publicBoundary: This page follows the accepted Linux v0.1 and V0.2 closure records in public Git, distinguishing source publication, recorded acceptance and reported validation from binary distribution, process isolation and platform support. Provider credentials, private operational context and unpublished material remain excluded.
 role: Mick identified the operating problems, set the constraints and acceptance boundaries, directed the implementation campaigns, and required independent evidence. AI tools performed substantial implementation and review work within those boundaries.
 ---
 
@@ -57,7 +63,7 @@ Ordinary model conversations are poor foundations for consequential project work
 
 B.O.T.S. began as a custom harness for coordinating bounded AI workers and grew into a native Linux desktop built around the same operating principles. Campaign workers receive explicit contracts, operate inside defined authority boundaries and leave durable artifacts that can be checked after the conversation is over. The desktop adds persistent application state and native workflows without promoting model output into authority.
 
-Campaign workers are text-only: they have no shell, filesystem, Git, plugin or tool access, and cannot recursively delegate. The harness owns execution and persistence.
+Campaign workers remain text-only: they have no shell, filesystem, Git, plugin or tool access, and cannot recursively delegate. The harness owns execution and persistence. V0.2's separate control plane adds explicitly granted tool, process, Git and plugin consumers; their implementation does not confer autonomous authority on those campaign workers.
 
 Mick framed the problems, designed the operating constraints, directed staged implementation campaigns and retained the final acceptance boundary. AI tooling was used heavily to implement, test and review the code; the site does not pretend otherwise.
 
@@ -85,7 +91,7 @@ The same distinction applies after implementation: a green test suite is technic
 
 ## Implemented today
 
-The public repository contains the original manifest-driven campaign harness and the native Linux v0.1 application, closed and accepted with limitations through Phase 12. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
+The public repository contains the original manifest-driven campaign harness, the native Linux v0.1 application closed with limitations through Phase 12, and the accepted V0.2 control plane. The Phase 10 baseline includes persistent conversations, streaming generation and cancellation, provider and model configuration, deterministic context and content-addressed attachments, search and exact navigation, inspection and provenance surfaces, transcript and archive interchange, backup and whole-installation restore, and a native campaign dock over the headless campaign engine.
 
 Phase 10 adds attempt-addressed campaign evidence, explicit preflight and one-shot approval binding, truthful cancellation, selected-versus-cumulative cost accounting, worker regeneration, synthesis rerun with staleness classification, and matching headless CLI operations.
 
@@ -96,6 +102,8 @@ Public `main` also adds provider-managed OpenRouter context and Archive v3 prese
 The subsequent Phase 12 wave 2 commit aligns provider failure reporting with the canonical remote-outcome classification and connects caller-supplied completion deadlines to HTTP transport timeouts. It adds regression coverage and loopback TCP tests for malformed streams, failures before terminal completion, trailing garbage, cancellation, timeout settlement and resource ownership, alongside backup/restore crash tests.
 
 Later packaging work pins Nuitka 4.2, freezes Python UTF-8 mode and normalizes filesystem-byte arguments in generated entrypoints. Application icon work embeds size-specific SVG badges in Qt and supplies desktop-entry and hicolor resources for wheels and standalone bundles. It sets application/window icons and a shared launcher identity; it does not install shortcuts or change desktop settings.
+
+V0.2 adds a shared capability/authority seam with explicit scope, expiry and budgets; durable execution queues and receipts; bounded local tools and an offline egress consumer; bounded code/process execution; a Git consequence ladder; self-authored plugins; and desktop integration. Crash recovery records uncertain in-flight outcomes as terminal `UNKNOWN` rather than guessing. Tool definitions and plugin manifests request capabilities and confer no execution authority by themselves. The release also includes the earlier schema-v2 provider-configuration line, which adds the built-in non-streaming local OpenAI-compatible provider while preserving schema-v1 behavior.
 
 ## Validation evidence
 
@@ -111,11 +119,15 @@ The public closure record distinguishes technical completion, subsequent human a
 
 The Phase 12 closure record retains **2240 passed, 1 permitted skip, 0 failures/errors** for its source candidate and **19/19 frozen obligations passed** for a rebuilt standalone. It records Mick's acceptance as **PASS_WITH_LIMITATIONS** on 6 October UTC. These are retained campaign results, not checks rerun for the documentation closeout; the public record does not establish independent byte-level verification of local seals or manifests. The retained run artifacts and executable are not in the public tree, and the latest public GitHub Actions T4 run still concerns the earlier CI v1 candidate.
 
-The later Unicode-path repair commit separately reports **164 mandatory checks passed**, **19 retained frozen cases passed**, two loopback stalled-provider deadline trials passed, and **363/363 final artifact files verified unchanged**. Its qualification is Forge with offscreen Qt, covering ASCII, accented and CJK/home-like paths, renamed Unicode executables, plain `C` locale startup and restore re-entry. It is not full T4, real-compositor, general Linux or arbitrary non-UTF-8 filename-byte qualification. Those results predate the subsequent icon commit and do not automatically validate its descendant. The icon implementation includes resource-rendering and launcher-identity tests, but no new public result is supplied. This site audit inspected public source and tests without independently rerunning B.O.T.S. or verifying its standalone.
+The later Unicode-path repair commit separately reports **164 mandatory checks passed**, **19 retained frozen cases passed**, two loopback stalled-provider deadline trials passed, and **363/363 final artifact files verified unchanged**. Its qualification is Forge with offscreen Qt, covering ASCII, accented and CJK/home-like paths, renamed Unicode executables, plain `C` locale startup and restore re-entry. It is not full T4, real-compositor, general Linux or arbitrary non-UTF-8 filename-byte qualification. Those results predate the subsequent icon commit and do not automatically validate its descendant. The icon implementation includes resource-rendering and launcher-identity tests, but no separate icon-specific validation result is supplied. This site audit inspected public source and tests without independently rerunning B.O.T.S. or verifying its standalone.
+
+The V0.2 closure record reports a retained final full-suite result of **exit 0 with zero failures** on release-prepared bytes; it supplies no numerical test total. Release preparation also records producer-version and archive compatibility checks and freshly built sdist/wheel metadata at `0.2.0`. The campaign seal covers **52 of 799 tracked release files**, comprising the V0.2 delta and three version-bearing files. The record explicitly states that the remaining **747 pre-existing v0.1 files were neither sealed nor validated by that campaign**; there is no whole-release seal. These statements retain their separate scopes. Raw campaign evidence remains unpublished, and no new public GitHub Actions run verifies this release. This audit did not independently rerun these checks or verify the local seal.
 
 ## Current boundary
 
-The public closure record reports Phase 12 closed and accepted with limitations, making Linux v0.1 complete for Mick's current use. Deferred post-v0.1 work retains its separate authority boundary. The standalone remains local and unpublished, with no public release or product deployment established. AppImage remains conditional/deferred; Flatpak and Snap are outside the documented packaging path.
+The V0.2 closure record reports Mick's acceptance and source publication on 9 October Australia/Sydney. The public `v0.2.0` tag points to release commit `0fffe894`; current `main` subsequently adds the closure document. This establishes tagged source publication, with no GitHub Release, public standalone binary or product deployment established. The v0.1 standalone remains local and unpublished. AppImage remains conditional/deferred; Flatpak and Snap are outside the documented packaging path. Deferred work and any lifting of retained limitations require separate authority.
+
+Plugins execute in the same process as the authority manager. Supervised-subprocess plugin execution is declared but not implemented; the capability seam is a policy/accounting layer, not a hostile arbitrary-code sandbox. The release's threat model covers accidental, defective, compromised-in-scope and out-of-authority behavior, with tamper resistance dependent on keeping untrusted code out of that authority process. Repository identity binding retains an unproven inode-reuse limitation. Unknown Git commands/flags fail closed, and broad-approval rationale is recorded without a claim of automated quality scoring. V0.2 closure does not resolve these limits or the retained v0.1 limitations.
 
 The accepted v0.1.0 artifact built with Nuitka 4.1.1 retains DEP-01: non-ASCII executable-path components can abort `bots5` or `bots5-desktop` at startup. That artifact still requires an ASCII-only installation path; source installation is unaffected. The later rebuilt candidate reports scoped Unicode-path qualification and does not replace the accepted artifact or establish broader distribution compatibility. The historical closure's DEP-01 wording remains applicable to its accepted artifact, rather than describing every later build recipe.
 
