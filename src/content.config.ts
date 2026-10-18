@@ -46,18 +46,4 @@ const writing = defineCollection({
   }),
 });
 
-const docs = defineCollection({
-  loader: glob({ base: './src/content/docs', pattern: '**/*.md' }),
-  schema: z.object({
-    title: z.string().min(1),
-    description: z.string().min(1),
-    section: z.string().min(1),
-    order: z.number().int().nonnegative(),
-    sourcePath: z.string().min(1),
-    sourceUrl: z.url(),
-    lastSynced: z.coerce.date(),
-    upstreamHash: z.string().min(1).optional(),
-  }),
-});
-
-export const collections = { work, writing, docs };
+export const collections = { work, writing };

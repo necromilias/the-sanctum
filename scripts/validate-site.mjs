@@ -15,7 +15,6 @@ const expectedFiles = [
   'work/homelab/index.html',
   'lab/index.html',
   'about/index.html',
-  'docs/index.html',
   'writing/index.html',
   '404.html',
   'robots.txt',
