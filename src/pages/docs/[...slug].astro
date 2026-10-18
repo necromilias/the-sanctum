@@ -1,0 +1,68 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+
+interface Props {
+  doc: CollectionEntry<'docs'>;
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+const { data } = doc;
+const synced = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+}).format(data.lastSynced);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: data.title,
+  description: data.description,
+  dateModified: data.lastSynced.toISOString().slice(0, 10),
+  url: `https://micksfoundry.org/docs/${doc.id}/`,
+  isBasedOn: data.sourceUrl,
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  canonicalPath={`/docs/${doc.id}/`}
+  type="article"
+  {structuredData}
+>
+  <header class="page-head case-head">
+    <div class="shell">
+      <p class="eyebrow">{data.section}</p>
+      <h1>{data.title}</h1>
+      <p class="lead">{data.description}</p>
+      <dl class="project-meta">
+        <div><dt>Source</dt><dd><a class="text-link" href={data.sourceUrl}>Official docs <span aria-hidden="true">↗</span></a></dd></div>
+        <div><dt>Checked</dt><dd>{synced}</dd></div>
+        <div><dt>Status</dt><dd>Mirrored reference</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="shell case-layout">
+      <article class="prose">
+        <Content />
+      </article>
+      <aside class="case-aside" aria-label="Source and scope">
+        <h2>Provenance</h2>
+        <p>Mirrored from the official Hermes Agent documentation. If this copy and the upstream page disagree, the upstream page is correct.</p>
+        <ul class="plain-list">
+          <li><a class="text-link" href={data.sourceUrl}>Read the original <span aria-hidden="true">↗</span></a></li>
+          <li>Upstream path: {data.sourcePath}</li>
+          <li>Last checked: {synced}</li>
+        </ul>
+        <a class="text-link" href="/docs/">All mirrored pages <span aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

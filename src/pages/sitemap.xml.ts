@@ -5,12 +5,15 @@ import { getWritingPosts, writingPreview } from '../lib/writing';
 export const GET: APIRoute = async () => {
   const projects = await getCollection('work');
   const posts = await getWritingPosts();
+  const docs = await getCollection('docs');
   const paths = [
     '/',
     '/work/',
     ...projects.sort((a, b) => a.data.order - b.data.order).map(({ id }) => `/work/${id}/`),
     '/lab/',
     '/about/',
+    '/docs/',
+    ...docs.sort((a, b) => a.data.order - b.data.order).map(({ id }) => `/docs/${id}/`),
     ...(!writingPreview ? ['/writing/'] : []),
     ...posts.filter(({ data }) => !data.draft).map(({ data }) => `/writing/${data.slug}/`),
   ];

@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const docs = (await getCollection('docs')).sort(
+  (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title),
+);
+
+const sections: { name: string; entries: typeof docs }[] = [];
+for (const doc of docs) {
+  let group = sections.find((candidate) => candidate.name === doc.data.section);
+  if (!group) {
+    group = { name: doc.data.section, entries: [] };
+    sections.push(group);
+  }
+  group.entries.push(doc);
+}
+
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
+}).format(date);
+
+const description = 'Selected pages of the official Hermes Agent documentation, mirrored with source links and review dates. The upstream documentation remains authoritative.';
+---
+
+<BaseLayout title="Docs" {description} canonicalPath="/docs/">
+  <header class="page-head">
+    <div class="shell">
+      <p class="eyebrow">Reference</p>
+      <h1>Hermes Agent, mirrored and dated.</h1>
+      <p class="lead">A working reference for the agent running this site: selected pages of the official Hermes Agent documentation, each carrying its upstream address and the date it was last checked. Where this copy and upstream disagree, upstream wins.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="shell">
+      {docs.length === 0 ? (
+        <p class="lead">No pages mirrored yet. Coverage is being assembled from the official documentation.</p>
+      ) : (
+        sections.map((section) => (
+          <div class="docs-section">
+            <p class="section-index">{section.name}</p>
+            <div class="project-grid work-grid">
+              {section.entries.map((doc) => (
+                <article class="project-card">
+                  <div class="card-topline">
+                    <span class="verified">Checked {formatDate(doc.data.lastSynced)}</span>
+                  </div>
+                  <h2><a href={`/docs/${doc.id}/`}>{doc.data.title}</a></h2>
+                  <p>{doc.data.description}</p>
+                  <a class="text-link" href={`/docs/${doc.id}/`}>Read <span aria-hidden="true">→</span></a>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell split">
+      <div>
+        <p class="section-index">Scope</p>
+        <h2>Selected, not exhaustive.</h2>
+      </div>
+      <div>
+        <p>The Hermes documentation runs to hundreds of pages. This section mirrors the ones that describe how the agent is actually run here: setup, profiles, skills, tools, automation and messaging. It is a curated shelf, not a complete copy. Where a page is not listed, the official documentation is the reference.</p>
+        <a class="text-link" href="https://hermes-agent.nousresearch.com/docs">Official Hermes documentation <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
