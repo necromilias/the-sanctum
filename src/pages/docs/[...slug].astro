@@ -41,16 +41,17 @@ const structuredData = {
       <h1>{data.title}</h1>
       <p class="lead">{data.description}</p>
       <dl class="project-meta">
-        <div><dt>Source</dt><dd><a class="text-link" href={data.sourceUrl}>Official docs <span aria-hidden="true">↗</span></a></dd></div>
+        <div><dt>Section</dt><dd>{data.section}</dd></div>
         <div><dt>Checked</dt><dd>{synced}</dd></div>
-        <div><dt>Status</dt><dd>Mirrored reference</dd></div>
+        <div><dt>Source</dt><dd><a class="text-link" href={data.sourceUrl}>Official docs <span aria-hidden="true">↗</span></a></dd></div>
+        <div><dt>Type</dt><dd>Mirrored reference</dd></div>
       </dl>
     </div>
   </header>
 
   <section class="section">
     <div class="shell case-layout">
-      <article class="prose">
+      <article class="prose writing-prose">
         <Content />
       </article>
       <aside class="case-aside" aria-label="Source and scope">
