@@ -1,10 +1,10 @@
 ---
 title: Organisational Memory + OMC
 summary: Repository-centred project memory with explicit authority, provenance and deterministic retrieval.
-status: implemented
-statusNote: Repository governance and deterministic OMC retrieval are implemented; broader successor cutover remains deliberately incomplete.
+status: active
+statusNote: Repository governance is active, with Stage 8 complete and Stage 9 not begun. OMC's deterministic retrieval was built and then parked; no implementation work is authorised while it is paused, and resuming it needs a fresh decision.
 type: Knowledge systems and governance
-lastVerified: 2026-10-01
+lastVerified: 2026-10-19
 areas:
   - provenance
   - retrieval
@@ -32,7 +32,7 @@ Organisational Memory is a repository-centred authority system, not a claim that
 
 The current system deliberately supports split authority: responsibilities that have been explicitly migrated can be owned by the successor repository while excluded responsibilities remain with their prior authoritative source until a separate cutover decision.
 
-OMC — the Organisational Memory Compiler — is a deterministic, read-only interface over explicitly pinned committed repositories. Its implemented retrieval layer selects bounded attributable context for another tool to use. It reports relevance and provenance; it does not become the decision-maker simply because it can retrieve the record.
+OMC — the Organisational Memory Compiler — is a deterministic, read-only interface over explicitly pinned committed repositories. Its retrieval layer was built to select bounded attributable context for another tool to use. It reports relevance and provenance; it does not become the decision-maker simply because it can retrieve the record.
 
 ## Constraints that mattered
 
@@ -54,9 +54,9 @@ The work used staged controls and deterministic evaluations. Retrieval defects a
 
 ## Implemented today
 
-The repository system provides structured organisational knowledge, explicit authority and approval boundaries, durable provenance, deterministic validation and bounded successor ownership. Its current evidence-gated manual successor work has progressed substantially, but full successor cutover remains a separate unperformed decision.
+The repository system provides structured organisational knowledge, explicit authority and approval boundaries, durable provenance, deterministic validation and bounded successor ownership. The evidence-gated manual successor work stands at Stage 8 complete, with Stage 9 not begun and awaiting a separate decision.
 
-OMC Stage 4 remains the implemented compiler baseline. It can deterministically retrieve bounded exact context from an explicit set of pinned repositories while remaining read-only and network-independent. Further retrieval evolution has accepted design work but remains intentionally unimplemented and parked pending a useful resumption condition.
+OMC Stage 4 was the implemented compiler baseline: it can deterministically retrieve bounded exact context from an explicit set of pinned repositories while remaining read-only and network-independent. It is now parked. The locally available models could not separate retrieval defects from raw model capability failures, so further retrieval work would have optimised the wrong bottleneck. Resuming it requires a fresh decision.
 
 The private operational corpus is deliberately not published. The linked governance reference is a sanitized, synthetic, non-authoritative architectural example of the principles behind the work. It is not independent proof of the private system’s current operational state.
 
@@ -66,6 +66,6 @@ Validation has included deterministic repository and compiler checks, black-box 
 
 ## Current boundary
 
-The core repository system is in use, and OMC Stage 4 provides an implemented deterministic retrieval interface. Full successor cutover is not implied, and retrieval remains downstream from the authority sources it reads.
+The core repository system is in use. OMC Stage 4 was built and evaluated, but the compiler is parked and takes no part in current operation. Full successor cutover is not implied, and retrieval remains downstream from the authority sources it reads.
 
 Private memory, internal operator procedures, source locations and unpublished project records remain outside the public boundary.
