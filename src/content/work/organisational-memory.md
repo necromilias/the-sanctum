@@ -2,9 +2,9 @@
 title: Organisational Memory + OMC
 summary: Repository-centred project memory with explicit authority, provenance and deterministic retrieval.
 status: active
-statusNote: Repository governance is active, with Stage 8 complete and Stage 9 not begun. OMC's deterministic retrieval was built and then parked; no implementation work is authorised while it is paused, and resuming it needs a fresh decision.
+statusNote: Repository governance is active, with Stage 8 complete and Stage 9 under way. OMC's deterministic retrieval was built and then parked; no implementation work is authorised while it is paused, and resuming it needs a fresh decision.
 type: Knowledge systems and governance
-lastVerified: 2026-10-19
+lastVerified: 2026-10-23
 areas:
   - provenance
   - retrieval
@@ -54,7 +54,7 @@ The work used staged controls and deterministic evaluations. Retrieval defects a
 
 ## Implemented today
 
-The repository system provides structured organisational knowledge, explicit authority and approval boundaries, durable provenance, deterministic validation and bounded successor ownership. The evidence-gated manual successor work stands at Stage 8 complete, with Stage 9 not begun and awaiting a separate decision.
+The repository system provides structured organisational knowledge, explicit authority and approval boundaries, durable provenance, deterministic validation and bounded successor ownership. The evidence-gated manual successor work stands at Stage 8 complete, with Stage 9 under way: remaining manual responsibilities are being cut over pack by pack, and each pack needs its own accepted decision.
 
 OMC Stage 4 was the implemented compiler baseline: it can deterministically retrieve bounded exact context from an explicit set of pinned repositories while remaining read-only and network-independent. It is now parked. The locally available models could not separate retrieval defects from raw model capability failures, so further retrieval work would have optimised the wrong bottleneck. Resuming it requires a fresh decision.
 
