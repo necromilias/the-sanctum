@@ -4,7 +4,7 @@ summary: The practical Linux, storage, networking and recovery work that keeps M
 status: maintained
 statusNote: An ongoing operating capability, described without drift-prone inventory claims or exposed-service detail.
 type: Infrastructure and operations
-lastVerified: 2026-11-10
+lastVerified: 2026-11-12
 areas:
   - Linux administration
   - containers
